@@ -24,7 +24,7 @@ export default function PageHeader({
                     opacity: isInView ? 1 : 0,
                     transition: "all 0.5s cubic-bezier(0.17, 0.55, 0.55, 1)",
                 }}
-                className="text-3xl lg:text-4xl xl:text-5xl font-medium"
+                className="text-3xl lg:text-4xl xl:text-5xl font-medium uppercase"
             >
                 {title}
             </h1>

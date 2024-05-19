@@ -1,13 +1,12 @@
-import Link from "next/link";
 import { ComponentProps } from "react";
 
 export default function BtnMain(
-    props: Omit<ComponentProps<typeof Link>, "className">
+    props: Omit<ComponentProps<"button">, "className">
 ) {
     return (
-        <Link
+        <button
             {...props}
-            className="px-4 py-2 text-sm border mt-12 hover:bg-white hover:text-black transition-colors font-semibold uppercase"
+            className="px-4 py-2 text-sm border mt-12 hover:brightness-75 bg-black text-white rounded-xl transition font-semibold uppercase"
         />
     );
 }
