@@ -18,7 +18,7 @@ export default function Nav() {
     }
     return (
         <header className="bg-background border-b w-full z-[998]">
-            <nav className="max-w-screen-xl mx-auto p-4 flex items-center justify-between">
+            <nav className="max-w-screen-xl mx-auto p-4 flex items-center z-50 justify-between relative">
                 <Logo />
                 <BurgerMenu onClick={handleShowMenu} showMenu={showMenu} />
 
@@ -30,7 +30,7 @@ export default function Nav() {
                 <ul
                     className={`${
                         showMenu ? "translate-x-0" : "-translate-x-full"
-                    } flex flex-col absolute top-full text-lg transition-transform left-0 w-full bg-background space-y-6 p-10 h-screen items-center justify-center lg:hidden`}
+                    } flex flex-col absolute top-full text-lg -mt transition-transform left-0 w-full bg-background space-y-6 p-10 h-screen items-center justify-center lg:hidden`}
                 >
                     <AllMappingNavLinks closeMenu={closeMenu} />
                 </ul>
@@ -110,27 +110,6 @@ export function AllMappingNavLinks({ closeMenu }: AllMappingNavLinksProps) {
                     </NavLink>
                 </li>
             ))}
-        </>
-    );
-}
-
-export function SocialMediaIcons() {
-    return (
-        <>
-            <Link href="/" target="_blank" aria-label="facebook">
-                <Facebook
-                    size={22}
-                    strokeWidth={1.4}
-                    className="text-zinc-500 hover:text-black transition-colors"
-                />
-            </Link>
-            <Link href="/" target="_blank" aria-label="instagram">
-                <Instagram
-                    size={22}
-                    strokeWidth={1.4}
-                    className="text-zinc-500 hover:text-black transition-colors"
-                />
-            </Link>
         </>
     );
 }

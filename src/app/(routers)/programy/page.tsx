@@ -1,6 +1,7 @@
 import BtnMain from "@/components/BtnMain";
 import PageHeader from "@/components/PageHeader";
 import { APPS } from "@/constants/Apps";
+import Link from "next/link";
 
 export default function page() {
     return (
@@ -35,7 +36,10 @@ function AppCard({
     title: string;
 }) {
     return (
-        <div className="relative p-4 bg-white border rounded-xl text-center">
+        <Link
+            href={`/programy/${href}`}
+            className="relative p-4 bg-white border rounded-xl text-center"
+        >
             <div>
                 <img src={imgUrl} className="h-full w-full" />
             </div>
@@ -43,7 +47,7 @@ function AppCard({
             <h2 className="text-sm uppercase font-bold tracking-widest my-4">
                 {title}
             </h2>
-            <BtnMain href={`/programy/` + href}>Zobacz</BtnMain>
-        </div>
+            <BtnMain>Zobacz</BtnMain>
+        </Link>
     );
 }
