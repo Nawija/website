@@ -5,8 +5,8 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import React, { ComponentProps, useState } from "react";
 
-import { Facebook, Instagram } from "lucide-react";
 import { NAV_LINKS } from "@/constants/Links";
+import Image from "next/image";
 
 export default function Nav() {
     const [showMenu, setShowMenu] = useState(false);
@@ -17,7 +17,7 @@ export default function Nav() {
         setShowMenu(false);
     }
     return (
-        <header className="bg-background border-b w-full z-[998]">
+        <header className="bg-foreground border-b w-full z-[998]">
             <nav className="max-w-screen-xl mx-auto p-4 flex items-center z-50 justify-between relative">
                 <Logo />
                 <BurgerMenu onClick={handleShowMenu} showMenu={showMenu} />
@@ -41,8 +41,12 @@ export default function Nav() {
 
 export function Logo() {
     return (
-        <Link href="/" className="md:text-xl text-base font-medium">
-            Seovileo
+        <Link
+            href="/"
+            className="text-base font-medium flex items-center justify-center text-primary-foreground space-x-1.5"
+        >
+            <Image src="/seovileo.svg" height={25} width={25} alt="logo seovileo" loading="eager" />
+            <span>Seovileo</span>
         </Link>
     );
 }
@@ -89,8 +93,8 @@ export function NavLink({ closeMenu, ...props }: NavLinkProps) {
                 closeMenu();
             }}
             className={cn(
-                "px-2 py-4 font-base transition-colors text-zinc-400 hover:text-black",
-                pathname === props.href && "text-black"
+                "px-2 py-4 font-base transition-colors text-primary-foreground hover:text-accent-foreground",
+                pathname === props.href && "text-accent"
             )}
         />
     );

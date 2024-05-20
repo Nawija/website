@@ -37,10 +37,12 @@ export default function Page() {
                 return "Absolutnie niezłamywalna";
             case length >= 30:
                 return "Mega Silne";
+            case length >= 25:
+                return "Wyjątkowo silne";
             case length >= 20:
-                return "Silne";
+                return "Bardzo Silne";
             case length >= 15:
-                return "Średnie";
+                return "Silne";
             case length >= 10:
                 return "Umiarkowane";
             default:
@@ -62,13 +64,14 @@ export default function Page() {
                 <label className="block mb-2">
                     Wybierz długość hasła: {length}
                 </label>
+
                 <input
                     type="range"
                     min="5"
                     max="50"
                     value={length}
                     onChange={(e) => setLength(Number(e.target.value))}
-                    className="w-64 my-4"
+                    className="w-64 my-4 bg-red-500"
                 />
                 <div className="my-2">
                     <span>Siła hasła: </span>

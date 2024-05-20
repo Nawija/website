@@ -24,12 +24,12 @@ export default function RootLayout({
             </head>
             <body
                 className={cn(
-                    "bg-[#F6F6F6] min-h-screen text-lg font-sans antialiased",
+                    "bg-background min-h-screen text-lg font-sans antialiased",
                     roboto.variable
                 )}
             >
                 <NextTopLoader
-                    color="#9C916A"
+                    color="#3c8835"
                     initialPosition={0.08}
                     crawlSpeed={200}
                     height={3}
@@ -37,7 +37,7 @@ export default function RootLayout({
                     showSpinner={false}
                     easing="ease"
                     speed={200}
-                    shadow="0 0 25px #9C916A,0 0 15px #9C916A"
+                    shadow="0 0 25px #978545,0 0 15px #e4b40a"
                     zIndex={1600}
                     showAtBottom={false}
                 />
