@@ -29,7 +29,7 @@ export default function RootLayout({
                 )}
             >
                 <NextTopLoader
-                    color="#3c8835"
+                    color="#978545"
                     initialPosition={0.08}
                     crawlSpeed={200}
                     height={3}
