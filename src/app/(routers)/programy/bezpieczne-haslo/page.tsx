@@ -34,9 +34,15 @@ export default function Page() {
     const evaluateStrength = (length: number) => {
         switch (true) {
             case length >= 50:
-                return "Absolutnie niezłamywalna";
+                return "Absolutnie niezłamywalne";
+            case length >= 45:
+                return "Nadludzko silne";
+            case length >= 40:
+                return "Niezwykle silne";
+            case length >= 35:
+                return "Ekstremalnie silne";
             case length >= 30:
-                return "Mega Silne";
+                return "Niesamowicie silne";
             case length >= 25:
                 return "Wyjątkowo silne";
             case length >= 20:
@@ -77,14 +83,22 @@ export default function Page() {
                     <span>Siła hasła: </span>
                     <span
                         className={`font-bold ${
-                            strength === "Absolutnie niezłamywalna"
+                            strength === "Absolutnie niezłamywalne"
                                 ? "text-green-500"
-                                : strength === "Mega"
-                                ? "text-green-400"
-                                : strength.includes("Mega Silne")
+                                : strength.includes("Nadludzko silne")
                                 ? "text-green-600"
-                                : strength.includes("Silne")
+                                : strength.includes("Niezwykle silne")
+                                ? "text-green-600"
+                                : strength.includes("Ekstremalnie silne")
                                 ? "text-green-700"
+                                : strength.includes("Niesamowicie silne")
+                                ? "text-lime-500"
+                                : strength.includes("Wyjątkowo silne")
+                                ? "text-lime-600"
+                                : strength.includes("Bardzo Silne")
+                                ? "text-lime-800"
+                                : strength.includes("Silne")
+                                ? "text-lime-800"
                                 : strength.includes("Umiarkowane")
                                 ? "text-yellow-600"
                                 : strength.includes("Słabe")
