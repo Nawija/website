@@ -131,8 +131,8 @@ export default function Page() {
 function Definition() {
     return (
         <div className="w-full h-full p-4 bg-white border rounded-xl flex-col flex items-start text-start justify-start space-y-6">
-            {DEFINITION.map((d) => (
-                <div className="text-sm">
+            {DEFINITION.map((d, i) => (
+                <div key={i} className="text-sm">
                     <p className="font-bold text-xl">{d.number}</p>
                     <ul className="space-y-1 ml-6 ">
                         <li className="list-disc text-base">{d.title}</li>
