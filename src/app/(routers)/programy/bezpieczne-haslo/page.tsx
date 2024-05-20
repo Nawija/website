@@ -10,15 +10,15 @@ import { DEFINITION } from "@/constants/Data";
 export default function Page() {
     const ref = useRef<HTMLDivElement>(null);
     const isInView = useInView(ref, { once: true });
-    const [password, setPassword] = useState("");
-    const [length, setLength] = useState(20);
-    const [history, setHistory] = useState([]);
-    const [strength, setStrength] = useState("");
+    const [password, setPassword] = useState<string>("");
+    const [length, setLength] = useState<number>(20);
+    const [history, setHistory] = useState<string[]>([]);
+    const [strength, setStrength] = useState<string>("");
 
     const generatePassword = () => {
         const charset =
             "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-        let newPassword = "";
+        let newPassword: string = "";
         for (let i = 0; i < length; i++) {
             const randomIndex = Math.floor(Math.random() * charset.length);
             newPassword += charset[randomIndex];
@@ -148,7 +148,7 @@ function HistoryPassword({
     history,
     clearHistory,
 }: {
-    history: any;
+    history: string[];
     clearHistory: () => void;
 }) {
     return (
