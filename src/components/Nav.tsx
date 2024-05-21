@@ -4,9 +4,10 @@ import { cn } from "@/lib/utils";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import React, { ComponentProps, useState } from "react";
+import { BsMoonStarsFill } from "react-icons/bs";
+import { IoSunnySharp } from "react-icons/io5";
 
 import { NAV_LINKS } from "@/constants/Links";
-import Image from "next/image";
 
 export default function Nav() {
     const [showMenu, setShowMenu] = useState(false);
@@ -26,6 +27,13 @@ export default function Nav() {
                 <ul className="items-center justify-center lg:flex hidden text-sm">
                     <AllMappingNavLinks closeMenu={closeMenu} />
                 </ul>
+                <div>
+                    {localStorage.theme === "dark" ? (
+                        <IoSunnySharp />
+                    ) : (
+                        <BsMoonStarsFill />
+                    )}
+                </div>
                 {/* ----------- Mobile ---------- */}
                 <ul
                     className={`${
