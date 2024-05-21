@@ -17,32 +17,14 @@ export default function RootLayout({
 }: Readonly<{
     children: React.ReactNode;
 }>) {
-    if (
-        localStorage.theme === "dark" ||
-        (!("theme" in localStorage) &&
-            window.matchMedia("(prefers-color-scheme: dark)").matches)
-    ) {
-        document.documentElement.classList.add("dark");
-    } else {
-        document.documentElement.classList.remove("dark");
-    }
-
-    // Whenever the user explicitly chooses light mode
-    localStorage.theme = "light";
-
-    // Whenever the user explicitly chooses dark mode
-    localStorage.theme = "dark";
-
-    // Whenever the user explicitly chooses to respect the OS preference
-    localStorage.removeItem("theme");
     return (
         <html lang="pl">
             <head>
-                <meta name="theme-color" content="#F6F6F6" />
+                <meta name="theme-color" content="#000000" />
             </head>
             <body
                 className={cn(
-                    "bg-background min-h-screen text-lg font-sans antialiased dark",
+                    "bg-background min-h-screen font-sans antialiased text-primary-foreground",
                     roboto.variable
                 )}
             >

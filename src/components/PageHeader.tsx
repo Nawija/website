@@ -22,9 +22,9 @@ export default function PageHeader({
                 style={{
                     transform: isInView ? "none" : "translateY(80px)",
                     opacity: isInView ? 1 : 0,
-                    transition: "all 0.5s cubic-bezier(0.17, 0.55, 0.55, 1)",
+                    transition: "all 0.4s cubic-bezier(0.17, 0.55, 0.55, 1)",
                 }}
-                className="text-3xl lg:text-4xl xl:text-5xl font-medium uppercase"
+                className="text-3xl lg:text-4xl xl:text-5xl text-primary font-medium uppercase"
             >
                 {title}
             </h1>
@@ -33,16 +33,18 @@ export default function PageHeader({
                     transform: isInView ? "none" : "translateY(80px)",
                     opacity: isInView ? 1 : 0,
                     transition:
-                        "all 0.5s cubic-bezier(0.17, 0.55, 0.55, 1) 0.1s",
+                        "all 0.6s cubic-bezier(0.17, 0.55, 0.55, 1) 0.08s",
                 }}
+                className="text-primary-foreground"
             >
                 {desc}
             </p>
             <GripHorizontal
                 style={{
                     opacity: isInView ? 1 : 0,
-                    transition: "all 1s cubic-bezier(0.17, 0.55, 0.55, 1) 0.8s",
+                    transition: "all 1s cubic-bezier(0.17, 0.55, 0.55, 1) 0.7s",
                 }}
+                className="text-color"
             />
         </div>
     );

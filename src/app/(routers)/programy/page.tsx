@@ -17,6 +17,7 @@ export default function page() {
                             key={index}
                             href={app.href}
                             title={app.title}
+                            desc={app.desc}
                             imgUrl={app.imgUrl}
                         />
                     ))}
@@ -30,23 +31,26 @@ function AppCard({
     imgUrl,
     href,
     title,
+    desc,
 }: {
     imgUrl: string;
     href: string;
     title: string;
+    desc: string;
 }) {
     return (
         <Link
             href={`/programy/${href}`}
-            className="relative p-4 border rounded-xl text-center"
+            className="relative p-4 border rounded-xl bg-foreground text-center"
         >
             <div>
                 <img src={imgUrl} className="h-full w-full" />
             </div>
 
-            <h2 className="text-sm uppercase font-bold tracking-widest my-4">
+            <h2 className="text-sm text-primary uppercase font-bold tracking-widest my-4">
                 {title}
             </h2>
+            <p className="mb-4">{desc}</p>
             <BtnMain>Zobacz</BtnMain>
         </Link>
     );
