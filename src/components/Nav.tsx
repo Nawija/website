@@ -17,9 +17,9 @@ export default function Nav() {
         setShowMenu(false);
     }
     return (
-        <header className="bg-foreground border-b w-full z-[998]">
-            <nav className="max-w-screen-xl mx-auto p-4 flex items-center z-50 justify-between relative">
-                <Logo />
+        <header className="bg-white dark:bg-black border-b w-full z-[998]">
+            <nav className="max-w-screen-xl mx-auto p-4 flex items-center z-50 justify-between text-black dark:text-white relative">
+                <Logo closeMenu={closeMenu} />
                 <BurgerMenu onClick={handleShowMenu} showMenu={showMenu} />
 
                 {/* ----------- Desctop --------- */}
@@ -30,7 +30,7 @@ export default function Nav() {
                 <ul
                     className={`${
                         showMenu ? "translate-x-0" : "-translate-x-full"
-                    } flex flex-col absolute top-full text-lg -mt transition-transform left-0 w-full bg-background space-y-6 p-10 h-screen items-center justify-center lg:hidden`}
+                    } flex flex-col absolute top-full text-lg -mt transition-transform left-0 w-10/12 border-r bg-black space-y-6 p-10 h-screen items-center justify-center lg:hidden`}
                 >
                     <AllMappingNavLinks closeMenu={closeMenu} />
                 </ul>
@@ -39,13 +39,27 @@ export default function Nav() {
     );
 }
 
-export function Logo() {
+export function Logo({ closeMenu }: { closeMenu: () => void }) {
     return (
         <Link
+            onClick={() => {
+                closeMenu();
+            }}
             href="/"
-            className="text-base font-medium flex items-center justify-center text-primary-foreground space-x-1.5"
+            className="text-base font-medium flex items-center justify-center space-x-1.5"
         >
-            <Image src="/seovileo.svg" height={25} width={25} alt="logo seovileo" loading="eager" />
+            <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="25"
+                height="25"
+                fill="none"
+            >
+                <path
+                    fill-rule="evenodd"
+                    d="M20.121.272c-1.821-.764-3.952.078-4.759 1.88l-1.889 4.216-5.803-3.342A5.16 5.16 0 0 0 .744 4.782c-2.343 3.808 1.211 8.4 5.592 7.224l5.24-1.407-3.369 7.517c-1.124 2.508.02 5.403 2.554 6.467 4.163 1.746 8.436-2.454 6.656-6.544l-2.46-5.651c-.313-.719-.376-1.47-.236-2.172 1.727.379 3.066 1.896 3.012 3.787l-.029 1.01c-.104 3.652 4.829 4.999 6.768 1.848 1.043-1.694.49-3.873-1.234-4.866l-7.076-4.076a3.88 3.88 0 0 1 1.991-.778l.802-.078c3.723-.362 4.58-5.357 1.165-6.789z"
+                    className="fill-black dark:fill-white"
+                />
+            </svg>
             <span>Seovileo</span>
         </Link>
     );
@@ -59,7 +73,7 @@ type BurgerMenuProps = Omit<
     showMenu: boolean;
 };
 export function BurgerMenu({ showMenu, ...props }: BurgerMenuProps) {
-    const BurgerStyle = "w-4 h-px bg-black transition-transform";
+    const BurgerStyle = "w-4 h-px bg-black dark:bg-white transition-transform";
     return (
         <button
             {...props}
@@ -93,7 +107,7 @@ export function NavLink({ closeMenu, ...props }: NavLinkProps) {
                 closeMenu();
             }}
             className={cn(
-                "px-2 py-4 font-base transition-colors text-primary-foreground hover:text-accent-foreground",
+                "px-2 py-4 font-base transition-colors hover:text-accent-foreground",
                 pathname === props.href && "text-accent"
             )}
         />

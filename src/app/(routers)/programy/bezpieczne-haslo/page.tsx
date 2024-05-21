@@ -66,6 +66,7 @@ export default function Page() {
                 title="Generator mocnych haseł"
                 desc="Lorem ipsum dolor sit amet consectetur adipisicing elit."
             />
+
             <div className="my-4 text-center flex items-center justify-center flex-col">
                 <label className="block mb-2">
                     Wybierz długość hasła: {length}
@@ -79,7 +80,7 @@ export default function Page() {
                     onChange={(e) => setLength(Number(e.target.value))}
                     className="w-64 my-4 bg-red-500"
                 />
-                <div className="my-2">
+                <div className="my-2 text-xs">
                     <span>Siła hasła: </span>
                     <span
                         className={`font-bold ${
@@ -109,14 +110,15 @@ export default function Page() {
                         {strength}
                     </span>
                 </div>
-                <BtnMain onClick={generatePassword}>Wygeneruj Hasło</BtnMain>
-
-                <div className="flex items-center justify-center space-x-3 my-12">
-                    <div className="font-bold text-lg">{password}</div>
+                <div className="flex items-start justify-center space-x-3 p-2 rounded-xl bg-white/10">
+                    <div className="font-bold text-lg w-[230px] overflow-x-auto">
+                        {password}
+                    </div>
                     {password && <CopyButton copy={password} />}
                 </div>
+                <BtnMain onClick={generatePassword}>Wygeneruj Hasło</BtnMain>
 
-                <div className="flex flex-col sm:flex-row items-start justify-center gap-2 w-full wrapper">
+                <div className="flex pt-12 flex-col sm:flex-row items-start justify-center gap-2 w-full wrapper">
                     <Definition />
                     <HistoryPassword
                         history={history}
@@ -130,7 +132,7 @@ export default function Page() {
 
 function Definition() {
     return (
-        <div className="w-full h-full p-4 bg-white border rounded-xl flex-col flex items-start text-start justify-start space-y-6">
+        <div className="w-full h-full p-4 bg-white/10 border rounded-xl flex-col flex items-start text-start justify-start space-y-6">
             {DEFINITION.map((d, i) => (
                 <div key={i} className="text-sm">
                     <p className="font-bold text-xl">{d.number}</p>
@@ -153,7 +155,7 @@ function HistoryPassword({
 }) {
     return (
         <>
-            <div className="transition-all bg-white w-full p-4 border flex flex-col items-end justify-center rounded-xl">
+            <div className="transition-all bg-white/10 w-full p-4 border flex flex-col items-end justify-center rounded-xl">
                 <div className="flex items-center justify-between w-full mb-6">
                     {history.length > 0 ? (
                         <button

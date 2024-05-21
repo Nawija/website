@@ -38,7 +38,7 @@ function AppCard({
     return (
         <Link
             href={`/programy/${href}`}
-            className="relative p-4 bg-white border rounded-xl text-center"
+            className="relative p-4 border rounded-xl text-center"
         >
             <div>
                 <img src={imgUrl} className="h-full w-full" />
