@@ -1,64 +1,54 @@
 "use client";
 
-import { useInView } from "framer-motion";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import PageHeader from "@/components/PageHeader";
 import CopyButton from "@/components/buttons/CopyButton";
 import BtnMain from "@/components/BtnMain";
+import { generatePassword, evaluateStrength } from "./utils";
+import { CHAR_SETS } from "@/constants/Apps";
 import { DEFINITION } from "@/constants/Data";
 
+type OptionsType = {
+    lower: boolean;
+    upper: boolean;
+    numbers: boolean;
+    symbols: boolean;
+};
+
 export default function Page() {
-    const ref = useRef<HTMLDivElement>(null);
-    const isInView = useInView(ref, { once: true });
     const [password, setPassword] = useState<string>("");
     const [length, setLength] = useState<number>(20);
     const [history, setHistory] = useState<string[]>([]);
     const [strength, setStrength] = useState<string>("");
+    const [options, setOptions] = useState<OptionsType>({
+        lower: true,
+        upper: true,
+        numbers: false,
+        symbols: false,
+    });
 
-    const generatePassword = () => {
-        const charset =
-            "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-        let newPassword: string = "";
-        for (let i = 0; i < length; i++) {
-            const randomIndex = Math.floor(Math.random() * charset.length);
-            newPassword += charset[randomIndex];
+    const handleGeneratePassword = () => {
+        const newPassword = generatePassword(length, options);
+        if (newPassword) {
+            setPassword(newPassword);
+            setHistory([newPassword, ...history]);
         }
-        setPassword(newPassword);
-        setHistory([newPassword, ...history]);
     };
 
     const clearHistory = () => {
         setHistory([]);
     };
 
-    const evaluateStrength = (length: number) => {
-        switch (true) {
-            case length >= 50:
-                return "Absolutnie niezłamywalne";
-            case length >= 45:
-                return "Nadludzko silne";
-            case length >= 40:
-                return "Niezwykle silne";
-            case length >= 35:
-                return "Ekstremalnie silne";
-            case length >= 30:
-                return "Niesamowicie silne";
-            case length >= 25:
-                return "Wyjątkowo silne";
-            case length >= 20:
-                return "Bardzo Silne";
-            case length >= 15:
-                return "Silne";
-            case length >= 10:
-                return "Umiarkowane";
-            default:
-                return "Słabe";
-        }
-    };
-
     useEffect(() => {
         setStrength(evaluateStrength(length));
     }, [length]);
+
+    const handleOptionChange = (option: keyof OptionsType) => {
+        setOptions((prevOptions) => ({
+            ...prevOptions,
+            [option]: !prevOptions[option],
+        }));
+    };
 
     return (
         <div className="anim-opacity">
@@ -110,13 +100,49 @@ export default function Page() {
                         {strength}
                     </span>
                 </div>
+                <div className="flex space-x-4 items-start">
+                    <label>
+                        <input
+                            type="checkbox"
+                            checked={options.lower}
+                            onChange={() => handleOptionChange("lower")}
+                        />
+                        Małe litery
+                    </label>
+                    <label>
+                        <input
+                            type="checkbox"
+                            checked={options.upper}
+                            onChange={() => handleOptionChange("upper")}
+                        />
+                        Duże litery
+                    </label>
+                    <label>
+                        <input
+                            type="checkbox"
+                            checked={options.numbers}
+                            onChange={() => handleOptionChange("numbers")}
+                        />
+                        Cyfry
+                    </label>
+                    <label>
+                        <input
+                            type="checkbox"
+                            checked={options.symbols}
+                            onChange={() => handleOptionChange("symbols")}
+                        />
+                        Znaki specjalne
+                    </label>
+                </div>
                 <div className="flex items-start justify-center space-x-3 p-2 rounded-xl bg-white/10">
                     <div className="font-bold text-lg w-[230px] overflow-x-auto">
                         {password}
                     </div>
                     {password && <CopyButton copy={password} />}
                 </div>
-                <BtnMain onClick={generatePassword}>Wygeneruj Hasło</BtnMain>
+                <BtnMain onClick={handleGeneratePassword}>
+                    Wygeneruj Hasło
+                </BtnMain>
 
                 <div className="flex pt-12 flex-col sm:flex-row items-start justify-center gap-2 w-full wrapper">
                     <Definition />
@@ -132,10 +158,10 @@ export default function Page() {
 
 function Definition() {
     return (
-        <div className="w-full h-full p-4 bg-white/10 border rounded-xl flex-col flex items-start text-start justify-start space-y-6">
+        <div className="w-full h-full p-6 bg-white/5 border rounded-xl flex-col flex items-start text-start justify-start space-y-6">
             {DEFINITION.map((d, i) => (
                 <div key={i} className="text-sm">
-                    <p className="font-bold text-xl">{d.number}</p>
+                    <p className="font-bold text-xl text-primary tracking-wide mb-2">{d.number}</p>
                     <ul className="space-y-1 ml-6 ">
                         <li className="list-disc text-base">{d.title}</li>
                         <li className="list-disc text-base">{d.desc}</li>
@@ -155,7 +181,7 @@ function HistoryPassword({
 }) {
     return (
         <>
-            <div className="transition-all bg-white/10 w-full p-4 border flex flex-col items-end justify-center rounded-xl">
+            <div className="transition-all bg-white/5 w-full p-4 border flex flex-col items-end justify-center rounded-xl">
                 <div className="flex items-center justify-between w-full mb-6">
                     {history.length > 0 ? (
                         <button

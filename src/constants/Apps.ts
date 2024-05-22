@@ -1,3 +1,22 @@
+export const CHAR_SETS = {
+    lower: "abcdefghijklmnopqrstuvwxyz",
+    upper: "ABCDEFGHIJKLMNOPQRSTUVWXYZ",
+    numbers: "0123456789",
+    symbols: "!@#$%^&*()_+[]{}|;:,.<>?",
+};
+export const STRENGTH_LEVELS = [
+    { min: 50, label: "Absolutnie niezłamywalne" },
+    { min: 45, label: "Nadludzko silne" },
+    { min: 40, label: "Niezwykle silne" },
+    { min: 35, label: "Ekstremalnie silne" },
+    { min: 30, label: "Niesamowicie silne" },
+    { min: 25, label: "Wyjątkowo silne" },
+    { min: 20, label: "Bardzo Silne" },
+    { min: 15, label: "Silne" },
+    { min: 10, label: "Umiarkowane" },
+    { min: 0, label: "Słabe" },
+];
+
 export const APPS = [
     {
         href: "bezpieczne-haslo",
