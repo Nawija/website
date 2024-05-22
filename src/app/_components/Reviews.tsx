@@ -25,7 +25,12 @@ export default function Reviews(props: PropType) {
                             <Star fill="orange" color="none" />
                             <span className="font-bold text-lg">5/5</span>
                         </div>
-                        <Link className="flex justify-end" target="_blank" aria-label="opinie google" href="https://www.google.com/search?sa=X&sca_esv=89411bb37f4aa9f8&rlz=1C1YTUH_plPL1002PL1002&tbm=lcl&sxsrf=ADLYWILs8XVNr0VGdMnT0XlRXWHbVrfQiQ:1715777738432&q=Jarek+Olszewski+-+Fotograf+Opinie&rflfq=1&num=20&stick=H4sIAAAAAAAAAONgkxIyNrEwMTcyMzcyMLE0tjA3MTTewMj4ilHRK7EoNVvBP6e4KrW8ODtTQVfBLb8kP70oMU3BvyAzLzN1ESthNQCuQqjCYQAAAA&rldimm=348472672049387413&hl=pl-PL&ved=2ahUKEwiU_fKU2o-GAxWVQvEDHactDIwQ9fQKegQIGBAF&biw=1920&bih=945&dpr=1#lkt=LocalPoiReviews">
+                        <Link
+                            className="flex justify-end"
+                            target="_blank"
+                            aria-label="opinie google"
+                            href="/"
+                        >
                             Wiecej opini
                         </Link>
                     </div>

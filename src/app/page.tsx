@@ -1,3 +1,5 @@
+import AutoScrollEmbla from "@/components/EmblaCarousel/AutoScrollEmbla";
+import PageHeader from "@/components/PageHeader";
 import { performRequest } from "@/lib/datocms";
 import dynamic from "next/dynamic";
 
@@ -23,5 +25,12 @@ export default async function Home() {
     const {
         data: { allGalers },
     } = await performRequest({ query: PAGE_CONTENT_QUERY });
-    return <></>;
+    return (
+        <>
+            <PageHeader
+                title="Strona Seovileo"
+                desc="programista do wynajecia"
+            />
+        </>
+    );
 }

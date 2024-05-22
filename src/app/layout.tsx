@@ -24,7 +24,7 @@ export default function RootLayout({
             </head>
             <body
                 className={cn(
-                    "bg-background min-h-screen font-sans antialiased text-primary-foreground",
+                    "bg-background min-h-[30vh] font-sans antialiased text-primary-foreground",
                     roboto.variable
                 )}
             >
@@ -42,7 +42,7 @@ export default function RootLayout({
                     showAtBottom={false}
                 />
                 <Nav />
-                <main className="w-full overflow-x-hidden min-h-screen px-2">
+                <main className="w-full overflow-x-hidden px-2">
                     {children}
                 </main>
                 <Footer />

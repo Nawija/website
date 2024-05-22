@@ -43,7 +43,7 @@ export const APPS = [
         imgUrl: "https://cdn.pixabay.com/photo/2024/05/11/06/47/tropical-8754092_1280.jpg",
     },
     {
-        href: "bezpieczne-haslo",
+        href: "gra-snake",
         title: "Gra Snake",
         desc: "Gra napisana w JavaScript",
         imgUrl: "https://images.unsplash.com/photo-1538439907460-1596cafd4eff?w=700&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8Z3JlZW4lMjBzbmFrZXxlbnwwfHwwfHx8MA%3D%3D",

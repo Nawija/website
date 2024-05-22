@@ -25,20 +25,17 @@ export default function Nav() {
                 <Logo closeMenu={closeMenu} />
                 <BurgerMenu onClick={handleShowMenu} showMenu={showMenu} />
 
-                {/* ----------- Desctop --------- */}
-                <ul className="items-center justify-center lg:flex hidden text-sm">
-                    <AllMappingNavLinks closeMenu={closeMenu} />
-                </ul>
                 <div>
                     <button className="text-primary-foreground hover:text-primary transition-colors p-2 hover:bg-background border rounded-xl">
                         <IoSunnySharp />
                     </button>
                 </div>
-                {/* ----------- Mobile ---------- */}
                 <ul
                     className={`${
-                        showMenu ? "translate-x-0" : "-translate-x-full"
-                    } flex flex-col absolute top-full text-lg -mt transition-transform left-0 w-10/12 border-r bg-black space-y-6 p-10 h-screen items-center justify-center lg:hidden`}
+                        showMenu
+                            ? "translate-x-0 lg:-translate-x-1/2"
+                            : "-translate-x-full lg:-translate-x-1/2"
+                    } flex flex-col absolute top-full text-lg transition-transform left-0 w-10/12 border-r bg-black space-y-6 p-10 h-screen items-center justify-center lg:text-sm lg:flex-row lg:left-1/2 lg:space-y-0 lg:w-auto lg:h-auto lg:p-2 lg:top-1/2 lg:-translate-y-1/2 lg:bg-transparent lg:border-none`}
                 >
                     <AllMappingNavLinks closeMenu={closeMenu} />
                 </ul>
