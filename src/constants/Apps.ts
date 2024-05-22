@@ -25,10 +25,10 @@ export const APPS = [
         imgUrl: "https://cdn.pixabay.com/photo/2017/10/31/09/55/fingerprint-2904774_1280.jpg",
     },
     {
-        href: "bezpieczne-haslo",
-        title: "Bezpieczne Hasło",
-        desc: "w dzisiejszych czasach dobre haslo to podstawa bezpieczenstwa w internecie",
-        imgUrl: "https://cdn.pixabay.com/photo/2023/06/14/15/00/sunset-8063358_1280.jpg",
+        href: "todo-list",
+        title: "Todo Lista",
+        desc: "zapisz w pamieci podrecznej",
+        imgUrl: "https://images.unsplash.com/photo-1484480974693-6ca0a78fb36b?w=700&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8dG9kbyUyMGxpc3R8ZW58MHx8MHx8fDA%3D",
     },
     {
         href: "bezpieczne-haslo",
