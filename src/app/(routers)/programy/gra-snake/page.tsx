@@ -88,14 +88,14 @@ const Home: React.FC = () => {
     }, [running, direction, food, gameOver, speed]);
 
     return (
-        <div className="flex flex-col relative items-center py-4 justify-center overflow-hidden">
+        <div className="flex flex-col relative items-center h-[65vh] justify-center overflow-hidden">
             <div
                 className="relative"
                 style={{
                     width: "80vw",
                     height: "80vw",
-                    maxWidth: "600px",
-                    maxHeight: "600px",
+                    maxWidth: "500px",
+                    maxHeight: "500px",
                 }}
             >
                 <Board snake={snake} food={food} boardSize={boardSize} />

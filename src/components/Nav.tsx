@@ -25,7 +25,7 @@ export default function Nav() {
                 <Logo closeMenu={closeMenu} />
                 <BurgerMenu onClick={handleShowMenu} showMenu={showMenu} />
 
-                <div>
+                <div className="hidden lg:flex items-center justify-center">
                     <button className="text-primary-foreground hover:text-primary transition-colors p-2 hover:bg-background border rounded-xl">
                         <IoSunnySharp />
                     </button>
@@ -38,6 +38,11 @@ export default function Nav() {
                     } flex flex-col absolute top-full text-lg transition-transform left-0 w-10/12 border-r bg-black space-y-6 p-10 h-screen items-center justify-center lg:text-sm lg:flex-row lg:left-1/2 lg:space-y-0 lg:w-auto lg:h-auto lg:p-2 lg:top-1/2 lg:-translate-y-1/2 lg:bg-transparent lg:border-none`}
                 >
                     <AllMappingNavLinks closeMenu={closeMenu} />
+                    <div className="flex lg:hidden items-center justify-center">
+                        <button className="text-primary-foreground hover:text-primary transition-colors p-2 hover:bg-background border rounded-xl">
+                            <IoSunnySharp />
+                        </button>
+                    </div>
                 </ul>
             </nav>
         </header>
@@ -72,7 +77,7 @@ type BurgerMenuProps = Omit<
     showMenu: boolean;
 };
 export function BurgerMenu({ showMenu, ...props }: BurgerMenuProps) {
-    const BurgerStyle = "w-4 h-px bg-black dark:bg-white transition-transform";
+    const BurgerStyle = "w-4 h-px bg-white transition-transform";
     return (
         <button
             {...props}
