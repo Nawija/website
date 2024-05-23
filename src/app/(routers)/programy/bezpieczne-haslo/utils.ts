@@ -13,7 +13,7 @@ export const generatePassword = (length: number, options: {
     if (options.symbols) charset += CHAR_SETS.symbols;
 
     if (!charset) {
-        alert("Please select at least one character type.");
+        alert("Wybierz z czego ma sie składac hasło");
         return "";
     }
 

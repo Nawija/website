@@ -5,7 +5,6 @@ import PageHeader from "@/components/PageHeader";
 import CopyButton from "@/components/buttons/CopyButton";
 import BtnMain from "@/components/BtnMain";
 import { generatePassword, evaluateStrength } from "./utils";
-import { CHAR_SETS } from "@/constants/Apps";
 import { DEFINITION } from "@/constants/Data";
 
 type OptionsType = {
@@ -57,9 +56,12 @@ export default function Page() {
                 desc="Lorem ipsum dolor sit amet consectetur adipisicing elit."
             />
 
-            <div className="my-4 text-center flex items-center justify-center flex-col">
+            <div className="my-4 text-center flex items-center justify-center flex-col space-y-10">
                 <label className="block mb-2">
-                    Wybierz długość hasła: {length}
+                    Wybierz długość hasła:{" "}
+                    <span className="text-primary font-medium">
+                        ( {length} )
+                    </span>
                 </label>
 
                 <input
@@ -100,14 +102,17 @@ export default function Page() {
                         {strength}
                     </span>
                 </div>
-                <div className="flex space-x-4 items-start">
+                <div className="flex relative space-x-4 items-start border p-4 border-blue-500/30 rounded-3xl bg-blue-500/5">
+                    <p className="absolute -top-3 px-4 text-blue-400 text-sm">
+                        Wybierz
+                    </p>
                     <label>
                         <input
                             type="checkbox"
                             checked={options.lower}
                             onChange={() => handleOptionChange("lower")}
                         />
-                        Małe litery
+                        <span className="text-blue-500 ml-2">Małe litery</span>
                     </label>
                     <label>
                         <input
@@ -115,7 +120,7 @@ export default function Page() {
                             checked={options.upper}
                             onChange={() => handleOptionChange("upper")}
                         />
-                        Duże litery
+                        <span className="text-blue-500 ml-2">Duże litery</span>
                     </label>
                     <label>
                         <input
@@ -123,7 +128,7 @@ export default function Page() {
                             checked={options.numbers}
                             onChange={() => handleOptionChange("numbers")}
                         />
-                        Cyfry
+                        <span className="text-blue-500 ml-2">Cyfry</span>
                     </label>
                     <label>
                         <input
@@ -131,11 +136,19 @@ export default function Page() {
                             checked={options.symbols}
                             onChange={() => handleOptionChange("symbols")}
                         />
-                        Znaki specjalne
+                        <span className="text-blue-500 ml-2">
+                            Znaki specjalne
+                        </span>
                     </label>
                 </div>
-                <div className="flex items-start justify-center space-x-3 p-2 rounded-xl bg-white/10">
-                    <div className="font-bold text-lg w-[230px] overflow-x-auto">
+                <div
+                    className={`flex items-start justify-center space-x-3 duration-300 rounded-xl transition-all ${
+                        password ? "bg-white/10 p-2" : "bg-transparent p-0"
+                    }`}
+                >
+                    <div
+                        className={`font-bold text-lg w-[230px] overflow-x-auto`}
+                    >
                         {password}
                     </div>
                     {password && <CopyButton copy={password} />}
@@ -161,7 +174,9 @@ function Definition() {
         <div className="w-full h-full p-6 bg-white/5 border rounded-xl flex-col flex items-start text-start justify-start space-y-6">
             {DEFINITION.map((d, i) => (
                 <div key={i} className="text-sm">
-                    <p className="font-bold text-xl text-primary tracking-wide mb-2">{d.number}</p>
+                    <p className="font-bold text-xl text-primary tracking-wide mb-2">
+                        {d.number}
+                    </p>
                     <ul className="space-y-1 ml-6 ">
                         <li className="list-disc text-base">{d.title}</li>
                         <li className="list-disc text-base">{d.desc}</li>
