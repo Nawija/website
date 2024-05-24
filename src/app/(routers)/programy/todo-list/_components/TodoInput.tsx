@@ -24,7 +24,7 @@ const TodoInput: React.FC<TodoInputProps> = ({ addTodo }) => {
                 value={inputValue}
                 onChange={(e) => setInputValue(e.target.value)}
                 className="p-2 flex-1 border border-gray-300 outline-none rounded"
-                placeholder="Add a new task"
+                placeholder="Dodaj do listy"
                 onKeyDown={(e) => {
                     if (e.key === "Enter") handleAddTodo();
                 }}
