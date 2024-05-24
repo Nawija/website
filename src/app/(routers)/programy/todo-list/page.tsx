@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import TodoInput from "./_components/TodoInput";
 import TodoList from "./_components/TodoList";
-import { LoadingItem } from "@/components/Skeletons/Skeletons"; // Assuming LoadingItem is a component in this path
+import { LoadingItem } from "@/components/Skeletons/Skeletons";
 
 const Home: React.FC = () => {
     const [todos, setTodos] = useState<string[]>([]);

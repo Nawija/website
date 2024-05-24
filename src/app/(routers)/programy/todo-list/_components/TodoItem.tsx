@@ -1,4 +1,8 @@
+"use client";
+
 import { MdDeleteForever, MdDone, MdOutlineWatchLater } from "react-icons/md";
+import { useRef } from "react";
+import { useInView } from "framer-motion";
 
 interface TodoItemProps {
     todo: string;
@@ -15,8 +19,18 @@ const TodoItem: React.FC<TodoItemProps> = ({
     moveLaterTodo,
     index,
 }) => {
+    const ref = useRef<HTMLDivElement>(null);
+    const isInView = useInView(ref, { once: true });
     return (
-        <li className="flex justify-between items-start p-2 border-b border-gray-200">
+        <div
+            ref={ref}
+            style={{
+                transform: isInView ? "none" : "translateY(-30px)",
+                opacity: isInView ? 1 : 0,
+                transition: "all 0.2s cubic-bezier(0.17, 0.55, 0.55, 1)",
+            }}
+            className="flex justify-between items-start p-2 border-b border-gray-200"
+        >
             <span className="pl-2">{todo}</span>
             <div className="flex space-x-3">
                 <button
@@ -38,7 +52,7 @@ const TodoItem: React.FC<TodoItemProps> = ({
                     <MdDeleteForever />
                 </button>
             </div>
-        </li>
+        </div>
     );
 };
 
