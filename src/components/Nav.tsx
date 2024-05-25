@@ -35,7 +35,7 @@ export default function Nav() {
                         showMenu
                             ? "translate-x-0 lg:-translate-x-1/2"
                             : "-translate-x-full lg:-translate-x-1/2"
-                    } flex flex-col absolute top-full text-lg transition-transform left-0 w-10/12 border-r bg-black space-y-6 p-10 h-screen items-center justify-center lg:text-sm lg:flex-row lg:left-1/2 lg:space-y-0 lg:w-auto lg:h-auto lg:p-2 lg:top-1/2 lg:-translate-y-1/2 lg:bg-transparent lg:border-none`}
+                    } flex flex-col absolute top-0 text-lg transition-transform left-0 w-10/12 border-r bg-black space-y-6 p-10 h-screen items-center justify-center lg:text-sm lg:flex-row lg:left-1/2 lg:space-y-0 lg:w-auto lg:h-auto lg:p-2 lg:top-1/2 lg:-translate-y-1/2 lg:bg-transparent lg:border-none`}
                 >
                     <AllMappingNavLinks closeMenu={closeMenu} />
                     <div className="flex lg:hidden items-center justify-center">

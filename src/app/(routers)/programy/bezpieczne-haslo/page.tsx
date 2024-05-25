@@ -51,6 +51,7 @@ export default function Page() {
 
     return (
         <div className="anim-opacity">
+            <div className="absolute top-0 left-1/2 -translate-x-1/2 bg-blue-500 blur-[122px] w-[60vw] h-[60vw] max-w-[900px] max-h-[100px] -z-10" />
             <PageHeader
                 title="Generator mocnych haseł"
                 desc="Lorem ipsum dolor sit amet consectetur adipisicing elit."

@@ -13,25 +13,28 @@ import {
     Position,
     getOppositeDirection,
 } from "./_utils/gameSnakeLogic";
+import GameOverScreen from "./_components/GameOverScreen";
 
 const Home: React.FC = () => {
     const [snake, setSnake] = useState<Position[]>(createSnake());
     const [food, setFood] = useState<Position>(createFood(20));
+    const [specialFood, setSpecialFood] = useState<Position | null>(null);
     const [direction, setDirection] = useState<Position>(DIRECTIONS.RIGHT);
     const [gameOver, setGameOver] = useState<boolean>(false);
     const [running, setRunning] = useState<boolean>(false);
     const [score, setScore] = useState<number>(0);
-    const [speed, setSpeed] = useState<number>(200);
+    const [speed, setSpeed] = useState<number>(0);
     const boardSize = 20;
 
     const handleStart = () => {
         setSnake(createSnake());
         setFood(createFood(boardSize));
+        setSpecialFood(null);
         setDirection(DIRECTIONS.RIGHT);
         setGameOver(false);
         setRunning(true);
         setScore(0);
-        setSpeed(200);
+        setSpeed(250);
     };
 
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -81,28 +84,60 @@ const Home: React.FC = () => {
                         setFood(createFood(boardSize));
                         newSnake.push({ ...newSnake[newSnake.length - 1] });
                         setScore((prevScore) => prevScore + 10);
-                        setSpeed((prevSpeed) => Math.max(prevSpeed - 10, 50)); // increase speed, minimum 50ms
+                        setSpeed((prevSpeed) => Math.max(prevSpeed - 10, 50));
+                    }
+                    if (
+                        specialFood &&
+                        newSnake[0].x === specialFood.x &&
+                        newSnake[0].y === specialFood.y
+                    ) {
+                        setSpecialFood(null);
+                        newSnake.push({ ...newSnake[newSnake.length - 1] });
+                        setScore((prevScore) => prevScore + 50);
+                        setSpeed((prevSpeed) => Math.max(prevSpeed - 20, 50));
                     }
                     return newSnake;
                 });
             }, speed);
             return () => clearInterval(interval);
         }
-    }, [running, direction, food, gameOver, speed]);
+    }, [running, direction, food, specialFood, gameOver, speed]);
+
+    useEffect(() => {
+        let specialFoodTimeout: NodeJS.Timeout;
+        if (running) {
+            const specialFoodInterval = setInterval(() => {
+                setSpecialFood(createFood(boardSize));
+                specialFoodTimeout = setTimeout(() => {
+                    setSpecialFood(null);
+                }, 5000);
+            }, 15000);
+
+            return () => {
+                clearInterval(specialFoodInterval);
+                clearTimeout(specialFoodTimeout);
+            };
+        }
+    }, [running]);
 
     return (
-        <div className="flex flex-col relative items-center h-[65vh] justify-center overflow-hidden">
-            <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 blur-[122px] w-[70vw] h-[70vw] max-w-[900px] max-h-[200px] rounded-full bg-green-600" />
+        <div className="flex anim-opacity flex-col relative items-center py-10 justify-center overflow-hidden">
+            <GameOverScreen score={score} running={running} />
             <div
                 className="relative"
                 style={{
                     width: "80vw",
                     height: "80vw",
-                    maxWidth: "500px",
-                    maxHeight: "500px",
+                    maxWidth: "800px",
+                    maxHeight: "800px",
                 }}
             >
-                <Board snake={snake} food={food} boardSize={boardSize} />
+                <Board
+                    snake={snake}
+                    food={food}
+                    specialFood={specialFood}
+                    boardSize={boardSize}
+                />
                 <Score score={score} />
                 {!running && (
                     <div className="absolute inset-0 flex flex-col justify-center items-center bg-black bg-opacity-50 text-white text-2xl">

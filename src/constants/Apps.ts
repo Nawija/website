@@ -21,7 +21,7 @@ export const APPS = [
     {
         href: "bezpieczne-haslo",
         title: "Bezpieczne Hasło",
-        desc: "w dzisiejszych czasach dobre haslo to podstawa bezpieczenstwa w internecie",
+        desc: "bezpieczenstwo w internecie",
         imgUrl: "https://cdn.pixabay.com/photo/2017/10/31/09/55/fingerprint-2904774_1280.jpg",
     },
     {
@@ -31,21 +31,33 @@ export const APPS = [
         imgUrl: "https://images.unsplash.com/photo-1484480974693-6ca0a78fb36b?w=700&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8dG9kbyUyMGxpc3R8ZW58MHx8MHx8fDA%3D",
     },
     {
-        href: "bezpieczne-haslo",
-        title: "Bezpieczne Hasło",
-        desc: "w dzisiejszych czasach dobre haslo to podstawa bezpieczenstwa w internecie",
-        imgUrl: "https://cdn.pixabay.com/photo/2021/01/06/12/14/church-5894267_1280.jpg",
-    },
-    {
-        href: "bezpieczne-haslo",
-        title: "Bezpieczne Hasło",
-        desc: "w dzisiejszych czasach dobre haslo to podstawa bezpieczenstwa w internecie",
-        imgUrl: "https://cdn.pixabay.com/photo/2024/05/11/06/47/tropical-8754092_1280.jpg",
-    },
-    {
         href: "gra-snake",
-        title: "Gra Snake",
+        title: "Game Snake",
         desc: "Gra napisana w JavaScript",
         imgUrl: "https://images.unsplash.com/photo-1538439907460-1596cafd4eff?w=700&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8Z3JlZW4lMjBzbmFrZXxlbnwwfHwwfHx8MA%3D%3D",
+    },
+    {
+        href: "google-translate",
+        title: "Google Translate",
+        desc: "tlumacz google",
+        imgUrl: "https://images.unsplash.com/photo-1573141597928-403fcee0e056?w=700&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OHx8Z29vZ2xlfGVufDB8fDB8fHww",
+    },
+    {
+        href: "chat-gpt",
+        title: "Chat GPT",
+        desc: "sztuczna inteligencja",
+        imgUrl: "https://images.unsplash.com/photo-1679083216051-aa510a1a2c0e?w=700&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OHx8Z3B0fGVufDB8fDB8fHww",
+    },
+    {
+        href: "pogoda",
+        title: "Pogoda",
+        desc: "sprawdz pogode",
+        imgUrl: "https://images.unsplash.com/photo-1530563885674-66db50a1af19?w=700&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8V2VhdGhlciUyMGFwcHxlbnwwfHwwfHx8MA%3D%3D",
+    },
+    {
+        href: "meme-generator",
+        title: "Meme Generator",
+        desc: "Meme Generator",
+        imgUrl: "https://cdn.pixabay.com/photo/2020/05/30/18/54/vendetta-5240011_1280.jpg",
     },
 ];

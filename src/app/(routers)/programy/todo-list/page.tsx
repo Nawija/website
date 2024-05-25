@@ -61,7 +61,7 @@ const Home: React.FC = () => {
     };
 
     return (
-        <div className="flex flex-col items-center justify-start pt-4 lg:pt-8 px-4 min-h-screen bg-gray-100">
+        <div className="flex anim-opacity flex-col items-center justify-start pt-4 lg:pt-8 px-4 min-h-screen bg-gray-100">
             <div className="w-full max-w-2xl p-4 bg-white shadow-md rounded">
                 <h1 className="text-2xl font-bold mb-4">To-Do Lista</h1>
                 <TodoInput addTodo={handleAddTodo} />

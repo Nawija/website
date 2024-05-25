@@ -16,7 +16,7 @@ export default function PageHeader({
     return (
         <div
             ref={ref}
-            className="space-y-8 text-center p-6 lg:py-12 max-w-xl mx-auto flex items-center justify-center flex-col"
+            className="space-y-8 text-center  p-6 lg:py-12 max-w-xl mx-auto flex items-center justify-center flex-col"
         >
             <h1
                 style={{

@@ -20,6 +20,10 @@ export const createFood = (boardSize: number): Position => ({
     x: Math.floor(Math.random() * boardSize),
     y: Math.floor(Math.random() * boardSize),
 });
+export const createSpecialFood = (boardSize: number): Position => ({
+    x: Math.floor(Math.random() * boardSize),
+    y: Math.floor(Math.random() * boardSize),
+});
 
 export const moveSnake = (
     snake: Position[],

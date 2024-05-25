@@ -26,11 +26,12 @@ export default async function Home() {
         data: { allGalers },
     } = await performRequest({ query: PAGE_CONTENT_QUERY });
     return (
-        <>
+        <div className="anim-opacity">
+            <div className="absolute top-0 left-1/2 -translate-x-1/2 bg-gradient-to-l from-blue-500 to-pink-500 w-[80vw] h-[80vw] max-w-[900px] max-h-[300px] rounded-b-full blur-[122px] -z-10" />
             <PageHeader
                 title="Strona Seovileo"
                 desc="programista do wynajecia"
             />
-        </>
+        </div>
     );
 }
