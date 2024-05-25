@@ -7,8 +7,8 @@ import { useInView } from "framer-motion";
 interface TodoItemProps {
     todo: string;
     removeTodo: (index: number) => void;
-    moveTodo: (index: number) => void;
-    moveLaterTodo: (index: number) => void;
+    moveTodo?: (index: number) => void;
+    moveLaterTodo?: (index: number) => void;
     index: number;
 }
 
@@ -33,18 +33,24 @@ const TodoItem: React.FC<TodoItemProps> = ({
         >
             <span className="pl-2">{todo}</span>
             <div className="flex space-x-3">
-                <button
-                    onClick={() => moveTodo(index)}
-                    className="p-1.5 bg-green-500 text-white rounded"
-                >
-                    <MdDone />
-                </button>
-                <button
-                    onClick={() => moveLaterTodo(index)}
-                    className="p-1.5 bg-yellow-500 text-white rounded"
-                >
-                    <MdOutlineWatchLater />
-                </button>
+                {moveTodo && (
+                    <button
+                        onClick={() => moveTodo(index)}
+                        className="p-1.5 bg-green-500 text-white rounded"
+                    >
+                        <MdDone />
+                    </button>
+                )}
+
+                {moveLaterTodo && (
+                    <button
+                        onClick={() => moveLaterTodo(index)}
+                        className="p-1.5 bg-yellow-500 text-white rounded"
+                    >
+                        <MdOutlineWatchLater />
+                    </button>
+                )}
+
                 <button
                     onClick={() => removeTodo(index)}
                     className="p-1.5 bg-red-500 text-white rounded"

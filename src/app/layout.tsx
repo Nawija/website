@@ -24,7 +24,7 @@ export default function RootLayout({
             </head>
             <body
                 className={cn(
-                    "bg-background min-h-[30vh] font-sans antialiased text-primary-foreground",
+                    "bg-background min-h-screen font-sans antialiased text-primary-foreground",
                     roboto.variable
                 )}
             >

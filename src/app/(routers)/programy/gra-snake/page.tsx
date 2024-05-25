@@ -59,8 +59,11 @@ const Home: React.FC = () => {
 
     useEffect(() => {
         if (running) {
+            document.body.style.overflow = "hidden";
             window.addEventListener("keydown", handleKeyDown);
             return () => window.removeEventListener("keydown", handleKeyDown);
+        } else {
+            document.body.style.overflow = "";
         }
     }, [running, direction]);
 
@@ -89,6 +92,7 @@ const Home: React.FC = () => {
 
     return (
         <div className="flex flex-col relative items-center h-[65vh] justify-center overflow-hidden">
+            <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 blur-[122px] w-[70vw] h-[70vw] max-w-[900px] max-h-[200px] rounded-full bg-green-600" />
             <div
                 className="relative"
                 style={{

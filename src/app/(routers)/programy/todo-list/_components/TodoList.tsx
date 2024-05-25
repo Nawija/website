@@ -3,8 +3,8 @@ import TodoItem from "./TodoItem";
 interface TodoListProps {
     todos: string[];
     removeTodo: (index: number) => void;
-    moveTodo: (index: number) => void;
-    moveLaterTodo: (index: number) => void;
+    moveTodo?: (index: number) => void;
+    moveLaterTodo?: (index: number) => void;
 }
 
 const TodoList: React.FC<TodoListProps> = ({ todos, removeTodo, moveTodo, moveLaterTodo }) => {

@@ -112,24 +112,6 @@ const Home: React.FC = () => {
                             removeTodo={(index) =>
                                 handleRemoveTodo(index, setDoneTodos)
                             }
-                            moveTodo={(index) =>
-                                handleMoveTodo(
-                                    index,
-                                    doneTodos,
-                                    setDoneTodos,
-                                    todos,
-                                    setTodos
-                                )
-                            }
-                            moveLaterTodo={(index) =>
-                                handleMoveTodo(
-                                    index,
-                                    doneTodos,
-                                    setDoneTodos,
-                                    laterTodos,
-                                    setLaterTodos
-                                )
-                            }
                         />
 
                         <CardHeader
@@ -143,24 +125,6 @@ const Home: React.FC = () => {
                             todos={laterTodos}
                             removeTodo={(index) =>
                                 handleRemoveTodo(index, setLaterTodos)
-                            }
-                            moveTodo={(index) =>
-                                handleMoveTodo(
-                                    index,
-                                    laterTodos,
-                                    setLaterTodos,
-                                    todos,
-                                    setTodos
-                                )
-                            }
-                            moveLaterTodo={(index) =>
-                                handleMoveTodo(
-                                    index,
-                                    laterTodos,
-                                    setLaterTodos,
-                                    doneTodos,
-                                    setDoneTodos
-                                )
                             }
                         />
                     </>
