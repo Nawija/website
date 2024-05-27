@@ -1,6 +1,6 @@
 import React from "react";
 
-export default async function page() {
+async function getData() {
     const url =
         "https://spotify23.p.rapidapi.com/search/?q=%3CREQUIRED%3E&type=multi&offset=0&limit=10&numberOfTopResults=5";
     const options = {
@@ -11,13 +11,33 @@ export default async function page() {
             "X-RapidAPI-Host": "spotify23.p.rapidapi.com",
         },
     };
+    const res = await fetch(url, options);
 
-    try {
-        const response = await fetch(url, options);
-        const res = await response.json();
-        return res.json();
-    } catch (error) {
-        console.error(error);
+    if (!res.ok) {
+        throw new Error("Failed to fetch data");
     }
-    return <div>{console.log(res)}</div>;
+
+    return res.json();
+}
+
+export default async function page() {
+    const data = await getData();
+    console.log(data.albums.items);
+    return (
+        <div className="wrapper text-center">
+            <p className="text-primary text-xl py-12">
+                Albums: {data.albums.totalCount}
+            </p>
+            <div className="grid grid-cols-5">
+                {data.albums.items.map((album, index) => (
+                    <div
+                        key={index}
+                        className="flex items-center justify-center flex-col"
+                    >
+                        <p>{album.data.name}</p>
+                    </div>
+                ))}
+            </div>
+        </div>
+    );
 }
