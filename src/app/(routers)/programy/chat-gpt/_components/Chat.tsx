@@ -24,15 +24,15 @@ const Chat = () => {
 
     const renderResponse = () => {
         return (
-            <div className="w-[80vw] max-w-[500px]">
+            <div className="w-[83vw] max-w-[600px]">
                 {messages.map((m, index) => (
                     <div
                         key={m.id}
-                        className={`flex items-center justify-start ${
+                        className={`flex items-center justify-start border-b p-2 ${
                             m.role === "user" ? "user-chat" : "ai-chat"
                         }`}
                     >
-                        <div className="p-3 w-9 h-9 text-xl rounded-full mr-3 bg-green-800 text-white flex items-center justify-center">
+                        <div className="p-3 w-8 h-8 text-lg rounded-full mr-3 bg-green-800 text-white flex items-center justify-center">
                             K
                         </div>
                         <p>{m.content}</p>
@@ -45,17 +45,18 @@ const Chat = () => {
     return (
         <div
             ref={chatContainer}
-            className="flex items-center justify-center flex-col"
+            className="flex items-center justify-between flex-col h-full"
         >
             {renderResponse()}
+
             <form
-                className="z-20 flex items-center py-2 px-4 justify-center bg-zinc-700 rounded-2xl fixed bottom-12"
+                className="z-20 flex items-center py-2 px-4 justify-center bg-zinc-700 rounded-2xl"
                 onSubmit={handleSubmit}
             >
                 <input
                     type="text"
                     placeholder="Napisz do Chat-GPT"
-                    className="w-[80vw] max-w-[600px] p-2 rounded-l-xl outline-none bg-zinc-700 placeholder:text-sm"
+                    className="w-[70vw] max-w-[600px] p-2  rounded-l-xl outline-none bg-zinc-700 placeholder:text-sm"
                     onChange={handleInputChange}
                     value={input}
                 />
