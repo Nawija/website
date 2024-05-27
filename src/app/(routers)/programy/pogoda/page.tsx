@@ -1,7 +1,23 @@
-export default async function PogodaApp() {
-    const data = await fetch(
-        "https://api.open-meteo.com/v1/forecast?latitude=52.52&longitude=13.41&current=temperature_2m,wind_speed_10m&hourly=temperature_2m,relative_humidity_2m,wind_speed_10m"
-    );
-    console.log(data);
-    return <div>PogodaApp</div>;
+import React from "react";
+
+export default async function page() {
+    const url =
+        "https://spotify23.p.rapidapi.com/search/?q=%3CREQUIRED%3E&type=multi&offset=0&limit=10&numberOfTopResults=5";
+    const options = {
+        method: "GET",
+        headers: {
+            "X-RapidAPI-Key":
+                "cd3a4ebbe3msh1eab7291408e893p17df4fjsnb4109dd5e167",
+            "X-RapidAPI-Host": "spotify23.p.rapidapi.com",
+        },
+    };
+
+    try {
+        const response = await fetch(url, options);
+        const res = await response.json();
+        return res.json();
+    } catch (error) {
+        console.error(error);
+    }
+    return <div>{console.log(res)}</div>;
 }
