@@ -34,7 +34,7 @@ const MemeDisplay: React.FC<MemeDisplayProps> = ({
 
     return (
         <div className="relative text-center mb-4">
-            <img src={memeSrc} alt="Meme" className="w-full" />
+            <img src={memeSrc} alt="seovileo-meme" className="w-full max-h-[600px] object-cover" />
             <div className={topTextStyle}>{topText}</div>
             <div className={bottomTextStyle}>{bottomText}</div>
         </div>

@@ -1,9 +1,15 @@
 "use client";
 
-import { useState, useRef } from "react";
+import React, { useState, useRef } from "react";
 import MemeForm from "./MemeForm";
 import MemeDisplay from "./MemeDisplay";
 import { toPng } from "html-to-image";
+
+type MemeStyles = 'style1' | 'style2' | 'style3' | 'style4';
+
+type MemeRefs = {
+    [key in MemeStyles]: React.RefObject<HTMLDivElement>
+};
 
 const MemeGenerator: React.FC = () => {
     const [memeData, setMemeData] = useState({
@@ -11,7 +17,8 @@ const MemeGenerator: React.FC = () => {
         bottomText: "",
         memeSrc: "",
     });
-    const memeRefs = {
+
+    const memeRefs: MemeRefs = {
         style1: useRef<HTMLDivElement>(null),
         style2: useRef<HTMLDivElement>(null),
         style3: useRef<HTMLDivElement>(null),
@@ -30,7 +37,7 @@ const MemeGenerator: React.FC = () => {
         });
     };
 
-    const handleDownload = async (style: string) => {
+    const handleDownload = async (style: MemeStyles) => {
         if (memeRefs[style].current) {
             const dataUrl = await toPng(memeRefs[style].current!);
             const link = document.createElement("a");
@@ -45,70 +52,24 @@ const MemeGenerator: React.FC = () => {
             <MemeForm onGenerate={handleGenerate} />
             {memeData.topText && (
                 <div className="mt-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-                    <div>
-                        <div ref={memeRefs.style1}>
-                            <MemeDisplay
-                                memeSrc={memeData.memeSrc}
-                                topText={memeData.topText}
-                                bottomText={memeData.bottomText}
-                                style="style1"
-                            />
+                    {(['style1', 'style2', 'style3', 'style4'] as MemeStyles[]).map(style => (
+                        <div key={style}>
+                            <div ref={memeRefs[style]}>
+                                <MemeDisplay
+                                    memeSrc={memeData.memeSrc}
+                                    topText={memeData.topText}
+                                    bottomText={memeData.bottomText}
+                                    style={style}
+                                />
+                            </div>
+                            <button
+                                onClick={() => handleDownload(style)}
+                                className="bg-green-500 text-white p-2 rounded mx-auto w-full"
+                            >
+                                Pobierz
+                            </button>
                         </div>
-                        <button
-                            onClick={() => handleDownload("style1")}
-                            className="bg-green-500 text-white p-2 rounded mx-auto w-full"
-                        >
-                            Pobierz
-                        </button>
-                    </div>
-                    <div>
-                        <div ref={memeRefs.style2}>
-                            <MemeDisplay
-                                memeSrc={memeData.memeSrc}
-                                topText={memeData.topText}
-                                bottomText={memeData.bottomText}
-                                style="style2"
-                            />
-                        </div>
-                        <button
-                            onClick={() => handleDownload("style2")}
-                            className="bg-green-500 text-white p-2 rounded mx-auto w-full"
-                        >
-                            Pobierz
-                        </button>
-                    </div>
-                    <div>
-                        <div ref={memeRefs.style3}>
-                            <MemeDisplay
-                                memeSrc={memeData.memeSrc}
-                                topText={memeData.topText}
-                                bottomText={memeData.bottomText}
-                                style="style3"
-                            />
-                        </div>
-                        <button
-                            onClick={() => handleDownload("style3")}
-                            className="bg-green-500 text-white p-2 rounded mx-auto w-full"
-                        >
-                            Pobierz
-                        </button>
-                    </div>
-                    <div>
-                        <div ref={memeRefs.style4}>
-                            <MemeDisplay
-                                memeSrc={memeData.memeSrc}
-                                topText={memeData.topText}
-                                bottomText={memeData.bottomText}
-                                style="style3"
-                            />
-                        </div>
-                        <button
-                            onClick={() => handleDownload("style4")}
-                            className="bg-green-500 text-white p-2 rounded mx-auto w-full"
-                        >
-                            Pobierz
-                        </button>
-                    </div>
+                    ))}
                 </div>
             )}
         </div>
