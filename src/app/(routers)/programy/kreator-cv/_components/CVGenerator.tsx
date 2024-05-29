@@ -95,7 +95,9 @@ export default function CVGenerator() {
                     </div>
                 </div>
             ) : (
-                <div className="bg-background min-h-screen w-full space-y-12 px-6 text-center flex items-center justify-center flex-col">
+                <div
+                    className={`transition-all bg-background min-h-screen w-full space-y-12 px-6 text-center flex items-center justify-center flex-col`}
+                >
                     <h1 className="text-4xl font-medium">Darmowy Kreator CV</h1>
                     <p>
                         Lorem ipsum dolor sit amet consectetur adipisicing elit.

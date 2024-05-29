@@ -108,7 +108,7 @@ const CVForm: React.FC<CVFormProps> = ({ onGenerate }) => {
     };
 
     return (
-        <div className="p-7 border border-gray-300 w-full lg:w-1/2">
+        <div className={`p-7 w-full lg:w-1/2`}>
             <div className="mb-4">
                 <label className="block text-sm font-medium text-gray-700">
                     Name*
