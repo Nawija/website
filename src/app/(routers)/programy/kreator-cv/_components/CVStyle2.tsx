@@ -11,7 +11,7 @@ export default function CVStyle2({
 }: CVStyleProps) {
     return (
         <div className="bg-white h-full w-full text-[10px] flex items-start text-black p-1">
-            <div className="h-full bg-[#456E60] w-[30%] text-white relative">
+            <div className="h-full bg-[#456E60] lg:w-[30%] text-white relative">
                 <img
                     src={imgSrc}
                     alt="Profile"
@@ -19,7 +19,9 @@ export default function CVStyle2({
                 />
 
                 <div className="p-3 space-y-3">
-                    <h1 className="font-bold text-[20px] uppercase">{name}</h1>
+                    <h1 className="font-bold text-[16px] lg:text-[20px] uppercase">
+                        {name}
+                    </h1>
 
                     <div className="text">
                         <h2 className="font-medium mb-1">Kontakt</h2>
@@ -42,8 +44,12 @@ export default function CVStyle2({
                 </div>
             </div>
 
-            <div className="mt-4">
-                <h2 className="font-semibold">experience</h2>
+            <div className="p-4 space-y-6">
+                <div>
+                    <p className="font-medium">Profil Zawodowy</p>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Necessitatibus officiis non fugit.</p>
+                </div>
+                <h2 className="font-medium">experience</h2>
                 <ul>
                     {experience.map((exp) => (
                         <li key={exp.id}>

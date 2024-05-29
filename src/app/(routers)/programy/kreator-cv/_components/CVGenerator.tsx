@@ -59,13 +59,15 @@ export default function CVGenerator() {
         }
     };
 
+    const sizePDF = "w-[355px] h-[503px] sm:w-[495px] sm:h-[770px]";
+
     return (
         <div className="flex flex-col lg:flex-row items-start justify-start bg-gray-100">
             <CVForm onGenerate={handleGenerate} />
             {cvData.name ? (
                 <div className="flex flex-col items-center bg-background py-4 lg:py-12 space-y-12 justify-center w-full mx-auto">
                     <div>
-                        <div className="w-[495px] h-[770px]" ref={cvRef1}>
+                        <div className={sizePDF} ref={cvRef1}>
                             <CVStyle1
                                 name={cvData.name}
                                 email={cvData.email}
@@ -79,7 +81,7 @@ export default function CVGenerator() {
                     </div>
 
                     <div>
-                        <div className="w-[495px] h-[770px]" ref={cvRef2}>
+                        <div className={sizePDF} ref={cvRef2}>
                             <CVStyle2
                                 name={cvData.name}
                                 email={cvData.email}
