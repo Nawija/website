@@ -1,53 +1,49 @@
-import React from "react";
+import { CVStyleProps } from "../types";
 
-type Skill = {
-    id: number;
-    skill: string;
-};
-
-type Experience = {
-    id: number;
-    jobTitle: string;
-    company: string;
-    duration: string;
-    description: string;
-};
-
-type CVStyleProps = {
-    name: string;
-    email: string;
-    phone: string;
-    skills: Skill[];
-    experience: Experience[];
-};
-
-const CVStyle1: React.FC<CVStyleProps> = ({ name, email, phone, skills, experience }) => {
+export default function CVStyle1({
+    name,
+    email,
+    phone,
+    imgSrc,
+    skills,
+    experience,
+}: CVStyleProps) {
     return (
-        <div className="p-4 border border-gray-300 rounded-md shadow-md">
-            <h1 className="text-2xl font-bold">{name}</h1>
-            <p>{email}</p>
-            <p>{phone}</p>
-            <div className="mt-4">
-                <h2 className="text-xl font-semibold">Skills</h2>
-                <ul>
-                    {skills.map((skill) => (
-                        <li key={skill.id}>{skill.skill}</li>
-                    ))}
-                </ul>
+        <div className="bg-white h-full w-full text-[10px] flex items-start text-black">
+            <div className="flex items-start justify-start bg-stone-300 flex-col h-full p-3">
+                <div className="flex">
+                    <img
+                        src={imgSrc}
+                        alt="Profile"
+                        className="h-12 w-12 mr-2 rounded-full"
+                    />
+
+                    <div>
+                        <h1 className="font-bold capitalize">{name}</h1>
+                        <p>{email}</p>
+                        <p>{phone}</p>
+                    </div>
+                </div>
+                <div className="mt-4">
+                    <h2 className="font-semibold">Umiejętności</h2>
+                    <ul>
+                        {skills.map((skill) => (
+                            <li key={skill.id}>{skill.skill}</li>
+                        ))}
+                    </ul>
+                </div>
             </div>
-            <div className="mt-4">
-                <h2 className="text-xl font-semibold">Experience</h2>
+            <div className="p-4">
+                <h2 className="font-semibold">Doświadczenie</h2>
                 <ul>
                     {experience.map((exp) => (
                         <li key={exp.id}>
-                            <strong>{exp.jobTitle}</strong> at {exp.company} ({exp.duration})
-                            <p>{exp.description}</p>
+                            <strong>{exp.jobTitle}</strong> at {exp.company} (
+                            {exp.duration})<p>{exp.description}</p>
                         </li>
                     ))}
                 </ul>
             </div>
         </div>
     );
-};
-
-export default CVStyle1;
+}

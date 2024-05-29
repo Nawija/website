@@ -2,11 +2,11 @@
 
 import React, { useState, useRef } from "react";
 import CVForm from "./CVForm";
-import CVDisplay from "./CVDisplay";
 import jsPDF from "jspdf";
 import html2canvas from "html2canvas";
 import CVStyle1 from "./CVStyle1";
 import CVStyle2 from "./CVStyle2";
+import { Heart } from "lucide-react";
 
 type Skill = {
     id: number;
@@ -26,28 +26,26 @@ const CVGenerator: React.FC = () => {
         name: "",
         email: "",
         phone: "",
+        imgSrc: "",
         skills: [] as Skill[],
         experience: [] as Experience[],
     });
 
     const cvRef1 = useRef<HTMLDivElement>(null);
     const cvRef2 = useRef<HTMLDivElement>(null);
-    const cvRef3 = useRef<HTMLDivElement>(null);
 
     const handleGenerate = (
         name: string,
         email: string,
         phone: string,
+        imgSrc: string,
         skills: Skill[],
         experience: Experience[]
     ) => {
-        setCvData({ name, email, phone, skills, experience });
+        setCvData({ name, email, phone, imgSrc, skills, experience });
     };
 
-    const handleDownload = async (
-        cvRef: React.RefObject<HTMLDivElement>,
-        style: string
-    ) => {
+    const handleDownload = async (cvRef: React.RefObject<HTMLDivElement>) => {
         if (cvRef.current) {
             const canvas = await html2canvas(cvRef.current);
             const imgData = canvas.toDataURL("image/png");
@@ -57,72 +55,72 @@ const CVGenerator: React.FC = () => {
             const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
 
             pdf.addImage(imgData, "PNG", 0, 0, pdfWidth, pdfHeight);
-            pdf.save(`${style}-cv-${cvData.name}.pdf`);
+            pdf.save(`cv-${cvData.name}.pdf`);
         }
     };
 
     return (
-        <div className="p-4 flex">
+        <div className="flex flex-col lg:flex-row items-start justify-start bg-gray-100">
             <CVForm onGenerate={handleGenerate} />
-            <div className="flex flex-col w-3/4">
-                {cvData.name && (
-                    <div className="mt-4">
-                        <div className="w-[595px] h-[842px]" ref={cvRef1}>
-                            <CVDisplay
-                                name={cvData.name}
-                                email={cvData.email}
-                                phone={cvData.phone}
-                                skills={cvData.skills}
-                                experience={cvData.experience}
-                            />
-                        </div>
-                        <button
-                            onClick={() => handleDownload(cvRef1, "default")}
-                            className="bg-green-500 text-white p-2 rounded mt-4"
-                        >
-                            Download Default CV
-                        </button>
-                    </div>
-                )}
-                {cvData.name && (
-                    <div className="mt-4">
-                        <div className="w-[595px] h-[842px]" ref={cvRef2}>
+            {cvData.name ? (
+                <div className="flex flex-col items-center bg-background py-4 lg:py-12 space-y-12 justify-center w-full mx-auto">
+                    <div>
+                        <div className="w-[495px] h-[770px]" ref={cvRef1}>
                             <CVStyle1
                                 name={cvData.name}
                                 email={cvData.email}
                                 phone={cvData.phone}
+                                imgSrc={cvData.imgSrc}
                                 skills={cvData.skills}
                                 experience={cvData.experience}
                             />
                         </div>
                         <button
-                            onClick={() => handleDownload(cvRef2, "style1")}
-                            className="bg-green-500 text-white p-2 rounded mt-4"
+                            onClick={() => handleDownload(cvRef1)}
+                            className="bg-green-600 text-white px-4 py-1.5 rounded mt-4"
                         >
-                            Download CV Style 1
+                            Pobierz za darmo
                         </button>
                     </div>
-                )}
-                {cvData.name && (
-                    <div className="mt-4">
-                        <div className="w-[595px] h-[842px]" ref={cvRef3}>
+
+                    <div>
+                        <div className="w-[495px] h-[770px]" ref={cvRef2}>
                             <CVStyle2
                                 name={cvData.name}
                                 email={cvData.email}
                                 phone={cvData.phone}
+                                imgSrc={cvData.imgSrc}
                                 skills={cvData.skills}
                                 experience={cvData.experience}
                             />
                         </div>
                         <button
-                            onClick={() => handleDownload(cvRef3, "style2")}
-                            className="bg-green-500 text-white p-2 rounded mt-4"
+                            onClick={() => handleDownload(cvRef2)}
+                            className="bg-green-600 text-white px-4 py-1.5 rounded mt-4"
                         >
-                            Download CV Style 2
+                            Pobierz za darmo
                         </button>
                     </div>
-                )}
-            </div>
+                </div>
+            ) : (
+                <div className="bg-background min-h-screen w-full space-y-12 px-6 text-center flex items-center justify-center flex-col">
+                    <h1 className="text-4xl font-medium">Darmowy Kreator CV</h1>
+                    <p>
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                        Obcaecati velit pariatur voluptatibus?
+                    </p>
+                    <p>
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                        Obcaecati velit pariatur voluptatibus riatur
+                        voluptatibus?
+                    </p>
+                    <div className="px-10 py-5 border border-red-400 text-red-500 flex items-center justify-center">
+                        <p className="mr-2 text-lg uppercase">Dotacja</p>
+
+                        <Heart fill="red" />
+                    </div>
+                </div>
+            )}
         </div>
     );
 };
