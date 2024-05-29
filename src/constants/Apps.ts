@@ -60,4 +60,10 @@ export const APPS = [
         desc: "Meme Generator",
         imgUrl: "https://cdn.pixabay.com/photo/2020/05/30/18/54/vendetta-5240011_1280.jpg",
     },
+    {
+        href: "kreator-cv",
+        title: "Kreator CV",
+        desc: "stworz swoje cv",
+        imgUrl: "https://cdn.pixabay.com/photo/2021/09/15/15/49/resume-6627200_1280.jpg",
+    },
 ];
