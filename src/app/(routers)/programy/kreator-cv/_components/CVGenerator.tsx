@@ -1,11 +1,11 @@
 "use client";
 
-import React, { useState, useRef } from "react";
+import { useState, useRef } from "react";
 import CVForm from "./CVForm";
-import jsPDF from "jspdf";
-import html2canvas from "html2canvas";
 import CVStyle1 from "./CVStyle1";
 import CVStyle2 from "./CVStyle2";
+import jsPDF from "jspdf";
+import html2canvas from "html2canvas";
 import { Heart } from "lucide-react";
 
 type Skill = {
@@ -21,7 +21,7 @@ type Experience = {
     description: string;
 };
 
-const CVGenerator: React.FC = () => {
+export default function CVGenerator() {
     const [cvData, setCvData] = useState({
         name: "",
         email: "",
@@ -75,12 +75,7 @@ const CVGenerator: React.FC = () => {
                                 experience={cvData.experience}
                             />
                         </div>
-                        <button
-                            onClick={() => handleDownload(cvRef1)}
-                            className="bg-green-600 text-white px-4 py-1.5 rounded mt-4"
-                        >
-                            Pobierz za darmo
-                        </button>
+                        <DownloadBtn onClick={() => handleDownload(cvRef1)} />
                     </div>
 
                     <div>
@@ -94,12 +89,7 @@ const CVGenerator: React.FC = () => {
                                 experience={cvData.experience}
                             />
                         </div>
-                        <button
-                            onClick={() => handleDownload(cvRef2)}
-                            className="bg-green-600 text-white px-4 py-1.5 rounded mt-4"
-                        >
-                            Pobierz za darmo
-                        </button>
+                        <DownloadBtn onClick={() => handleDownload(cvRef2)} />
                     </div>
                 </div>
             ) : (
@@ -123,6 +113,19 @@ const CVGenerator: React.FC = () => {
             )}
         </div>
     );
-};
+}
 
-export default CVGenerator;
+function DownloadBtn({
+    onClick,
+}: {
+    onClick: React.MouseEventHandler<HTMLButtonElement>;
+}) {
+    return (
+        <button
+            onClick={onClick}
+            className="bg-green-600 text-white px-4 py-1.5 rounded mt-4"
+        >
+            Pobierz za darmo
+        </button>
+    );
+}
