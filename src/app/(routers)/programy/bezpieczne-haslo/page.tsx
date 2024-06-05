@@ -58,7 +58,7 @@ export default function Page() {
             />
 
             <div className="my-4 text-center flex items-center justify-center flex-col space-y-10">
-                <div className="w-[88vw] max-w-[600px] mx-auto">
+                <div className="w-[88vw] max-w-[400px] flex flex-col items-center justify-center text-center space-y-8">
                 <label className="block mb-2">
                     Wybierz długość hasła:{" "}
                     <span className="text-primary font-medium">
@@ -72,7 +72,7 @@ export default function Page() {
                     max="50"
                     value={length}
                     onChange={(e) => setLength(Number(e.target.value))}
-                    className="w-64 max-w-80 my-4 bg-red-500"
+                    className="w-full mx-auto my-4 bg-red-500"
                 />
                 </div>
                 <div className="my-2 text-xs">

@@ -1,5 +1,7 @@
 import BtnMain from "@/components/BtnMain";
 import PageHeader from "@/components/PageHeader";
+import dynamic from 'next/dynamic'
+// const ComponentC = dynamic(() => import('../components/C'), { ssr: false })
 import { APPS } from "@/constants/Apps";
 import Link from "next/link";
 
