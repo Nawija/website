@@ -173,11 +173,31 @@ const Home: React.FC = () => {
                     </div>
                 )}
             </div>
-            <div className="flex items-center justify-center space-x-7 mt-12">
-                <button className="p-3 border rounded-xl" onClick={() => setDirection(DIRECTIONS.LEFT)}>Left</button>
-                <button className="p-3 border rounded-xl" onClick={() => setDirection(DIRECTIONS.UP)}>Up</button>
-                <button className="p-3 border rounded-xl" onClick={() => setDirection(DIRECTIONS.DOWN)}>Down</button>
-                <button className="p-3 border rounded-xl" onClick={() => setDirection(DIRECTIONS.RIGHT)}>Right</button>
+            <div className="flex items-center justify-center space-x-7 mt-12 lg:hidden">
+                <button
+                    className="p-3 border rounded-xl"
+                    onClick={() => setDirection(DIRECTIONS.LEFT)}
+                >
+                    Left
+                </button>
+                <button
+                    className="p-3 border rounded-xl"
+                    onClick={() => setDirection(DIRECTIONS.UP)}
+                >
+                    Up
+                </button>
+                <button
+                    className="p-3 border rounded-xl"
+                    onClick={() => setDirection(DIRECTIONS.DOWN)}
+                >
+                    Down
+                </button>
+                <button
+                    className="p-3 border rounded-xl"
+                    onClick={() => setDirection(DIRECTIONS.RIGHT)}
+                >
+                    Right
+                </button>
             </div>
         </div>
     );
