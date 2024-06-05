@@ -27,7 +27,7 @@ const SpecialFood: React.FC<FoodProps> = ({ food, boardSize }) => {
         height: `${100 / boardSize}%`,
       }}
     >
-      <span className="text-red-500 text-2xl">{countdown}</span>
+      <span className="text-red-500 text-xl font-bold">{countdown}</span>
     </div>
   );
 };

@@ -35,6 +35,7 @@ const Home: React.FC = () => {
         setRunning(true);
         setScore(0);
         setSpeed(250);
+        window.scrollTo({ top: 0, behavior: "smooth" });
     };
 
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -64,7 +65,9 @@ const Home: React.FC = () => {
         if (running) {
             document.body.style.overflow = "hidden";
             window.addEventListener("keydown", handleKeyDown);
-            return () => window.removeEventListener("keydown", handleKeyDown);
+            return () => {
+                window.removeEventListener("keydown", handleKeyDown);
+            };
         } else {
             document.body.style.overflow = "";
         }
@@ -120,6 +123,12 @@ const Home: React.FC = () => {
         }
     }, [running]);
 
+    useEffect(() => {
+        return () => {
+            document.body.style.overflow = "";
+        };
+    }, []);
+
     return (
         <div className="flex anim-opacity flex-col relative items-center py-10 justify-center overflow-hidden">
             <GameOverScreen score={score} running={running} />
@@ -163,6 +172,12 @@ const Home: React.FC = () => {
                         )}
                     </div>
                 )}
+            </div>
+            <div className="flex items-center justify-center space-x-7 mt-12">
+                <button className="p-3 border rounded-xl" onClick={() => setDirection(DIRECTIONS.LEFT)}>Left</button>
+                <button className="p-3 border rounded-xl" onClick={() => setDirection(DIRECTIONS.UP)}>Up</button>
+                <button className="p-3 border rounded-xl" onClick={() => setDirection(DIRECTIONS.DOWN)}>Down</button>
+                <button className="p-3 border rounded-xl" onClick={() => setDirection(DIRECTIONS.RIGHT)}>Right</button>
             </div>
         </div>
     );

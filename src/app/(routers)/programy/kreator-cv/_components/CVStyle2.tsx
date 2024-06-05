@@ -15,9 +15,9 @@ export default function CVStyle2({
                 <img
                     src={imgSrc}
                     alt="Profile"
-                    className="h-[30%] w-full mr-2 object-cover"
+                    style={{ objectFit: "cover" }}
+                    className="h-[30%] w-full mr-2"
                 />
-
                 <div className="p-3 space-y-3">
                     <h1 className="font-bold text-[16px] lg:text-[20px] uppercase">
                         {name}
@@ -47,7 +47,10 @@ export default function CVStyle2({
             <div className="p-4 space-y-6">
                 <div>
                     <p className="font-medium">Profil Zawodowy</p>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Necessitatibus officiis non fugit.</p>
+                    <p>
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                        Necessitatibus officiis non fugit.
+                    </p>
                 </div>
                 <h2 className="font-medium">experience</h2>
                 <ul>

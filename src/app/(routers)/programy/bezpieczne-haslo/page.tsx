@@ -103,7 +103,7 @@ export default function Page() {
                         {strength}
                     </span>
                 </div>
-                <div className="flex relative space-x-4 items-start border p-4 border-blue-500/30 rounded-3xl bg-blue-500/5">
+                <div className="flex relative space-x-4 items-start border p-4 mx-2 border-blue-500/30 rounded-3xl bg-blue-500/5">
                     <p className="absolute -top-3 px-4 text-blue-400 text-sm">
                         Wybierz
                     </p>
@@ -143,15 +143,17 @@ export default function Page() {
                     </label>
                 </div>
                 <div
-                    className={`flex items-start justify-center space-x-3 duration-300 rounded-xl transition-all ${
+                    className={`flex items-start justify-center space-x-3 duration-500 rounded-xl transition-all ${
                         password ? "bg-white/10 p-2" : "bg-transparent p-0"
                     }`}
                 >
-                    <div
-                        className={`font-bold text-lg w-[230px] overflow-x-auto`}
+                    <p
+                        className={`font-bold text-lg w-[80vw] max-w-screen-sm transition-all overflow-x-auto ${
+                            password ? "scale-100" : "scale-0"
+                        }`}
                     >
                         {password}
-                    </div>
+                    </p>
                     {password && <CopyButton copy={password} />}
                 </div>
                 <BtnMain onClick={handleGeneratePassword}>
