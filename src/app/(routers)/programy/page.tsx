@@ -1,22 +1,8 @@
 import dynamic from 'next/dynamic';
 import React from 'react';
-import BtnMain from "@/components/BtnMain";
 import PageHeader from "@/components/PageHeader";
 import { APPS } from "@/constants/Apps";
-import Link from "next/link";
 
-// // Skeleton component
-// function SkeletonAppCard() {
-//     return (
-//         <div className="p-2 border rounded bg-foreground text-center overflow-hidden animate-pulse">
-//             <div className="h-80 w-full bg-white/10" />
-//             <div className="mt-4 h-6 bg-white/10 w-3/4 mx-auto" />
-//             <div className="mt-2 h-4 bg-white/10 w-1/2 mx-auto" />
-//             <div className="mt-4 h-8 bg-white/10 w-1/3 mx-auto" />
-//         </div>
-//     );
-// }
-// Skeleton component
 function SkeletonAppCard() {
     return (
         <div

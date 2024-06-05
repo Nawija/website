@@ -173,27 +173,27 @@ const Home: React.FC = () => {
                     </div>
                 )}
             </div>
-            <div className="flex items-center justify-center space-x-7 mt-12 lg:hidden">
+            <div className="flex items-center justify-center mt-12 relative lg:hidden p-10 w-40 h-40 mx-auto">
                 <button
-                    className="p-3 border rounded-xl"
+                    className="p-3 border rounded-xl absolute left-0 top-1/2 -translate-y-1/2 -translate-x-full"
                     onClick={() => setDirection(DIRECTIONS.LEFT)}
                 >
                     Left
                 </button>
                 <button
-                    className="p-3 border rounded-xl"
+                   className="p-3 border rounded-xl absolute left-0 top-1/2 -translate-y-full -translate-x-1/2"
                     onClick={() => setDirection(DIRECTIONS.UP)}
                 >
                     Up
                 </button>
                 <button
-                    className="p-3 border rounded-xl"
+                   className="p-3 border rounded-xl absolute left-0 top-1/2 translate-y-full -translate-x-1/2"
                     onClick={() => setDirection(DIRECTIONS.DOWN)}
                 >
                     Down
                 </button>
                 <button
-                    className="p-3 border rounded-xl"
+                   className="p-3 border rounded-xl absolute left-0 top-1/2 -translate-y-1/2 translate-x-full"
                     onClick={() => setDirection(DIRECTIONS.RIGHT)}
                 >
                     Right
