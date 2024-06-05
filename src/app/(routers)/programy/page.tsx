@@ -1,11 +1,43 @@
+import dynamic from 'next/dynamic';
+import React from 'react';
 import BtnMain from "@/components/BtnMain";
 import PageHeader from "@/components/PageHeader";
-import dynamic from 'next/dynamic'
-// const ComponentC = dynamic(() => import('../components/C'), { ssr: false })
 import { APPS } from "@/constants/Apps";
 import Link from "next/link";
 
-export default function page() {
+// // Skeleton component
+// function SkeletonAppCard() {
+//     return (
+//         <div className="p-2 border rounded bg-foreground text-center overflow-hidden animate-pulse">
+//             <div className="h-80 w-full bg-white/10" />
+//             <div className="mt-4 h-6 bg-white/10 w-3/4 mx-auto" />
+//             <div className="mt-2 h-4 bg-white/10 w-1/2 mx-auto" />
+//             <div className="mt-4 h-8 bg-white/10 w-1/3 mx-auto" />
+//         </div>
+//     );
+// }
+// Skeleton component
+function SkeletonAppCard() {
+    return (
+        <div
+            className="relative p-2 border rounded bg-foreground text-center group overflow-hidden"
+        >
+            <div
+                className="h-80 w-full bg-white/10 object-cover group-hover:scale-95 transition-transform duration-300"
+            />
+            <div className="absolute bottom-0 left-0 bg-[#1111116a] backdrop-blur-3xl w-full p-2">
+                <div className="w-[30%] z-10 uppercase font-bold tracking-widest py-3 bg-white"
+                />
+                <p className="mb-3"/>
+                <div className="mr-auto w-full">
+                    <div className='bg-black/10 w-32 h-6' />
+                </div>
+            </div>
+        </div>
+    );
+}
+
+export default function Page() {
     return (
         <div className="anim-opacity">
             <PageHeader
@@ -14,49 +46,24 @@ export default function page() {
             />
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 pb-12 wrapper">
-                {APPS.map((app, index) => (
-                    <AppCard
-                        key={index}
-                        href={app.href}
-                        title={app.title}
-                        desc={app.desc}
-                        imgUrl={app.imgUrl}
-                    />
-                ))}
+                {APPS.map((app, index) => {
+                    // Dynamically imported AppCard component for each app
+                    const DynamicAppCard = dynamic(() => import('./_components/AppCards'), {
+                        ssr: false,
+                        loading: () => <SkeletonAppCard />,
+                    });
+
+                    return (
+                        <DynamicAppCard
+                            key={index}
+                            href={app.href}
+                            title={app.title}
+                            desc={app.desc}
+                            imgUrl={app.imgUrl}
+                        />
+                    );
+                })}
             </div>
         </div>
-    );
-}
-
-function AppCard({
-    imgUrl,
-    href,
-    title,
-    desc,
-}: {
-    imgUrl: string;
-    href: string;
-    title: string;
-    desc: string;
-}) {
-    return (
-        <Link
-            href={`/programy/${href}`}
-            className="relative p-2 border rounded bg-foreground text-center group overflow-hidden"
-        >
-            <img
-                src={imgUrl}
-                className="h-80 w-full object-cover group-hover:scale-95 transition-transform duration-300"
-            />
-            <div className="absolute bottom-0 left-0 bg-[#1111116a] backdrop-blur-3xl w-full p-2">
-                <h2 className="text-sm text-primary  z-10 uppercase font-bold tracking-widest my-3">
-                    {title}
-                </h2>
-                <p className="mb-3">{desc}</p>
-                <div className="mr-auto w-full">
-                    <BtnMain>Zobacz</BtnMain>
-                </div>
-            </div>
-        </Link>
     );
 }

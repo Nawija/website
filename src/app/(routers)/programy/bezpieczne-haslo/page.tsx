@@ -72,7 +72,7 @@ export default function Page() {
                     max="50"
                     value={length}
                     onChange={(e) => setLength(Number(e.target.value))}
-                    className="w-full mx-auto my-4 bg-red-500"
+                    className="w-full mx-auto my-4"
                 />
                 </div>
                 <div className="my-2 text-xs">
