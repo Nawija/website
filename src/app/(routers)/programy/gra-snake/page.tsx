@@ -1,9 +1,6 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { FaArrowRotateLeft } from "react-icons/fa6";
-import Board from "./_components/Board";
-import Score from "./_components/Score";
 import {
     DIRECTIONS,
     createSnake,
@@ -13,6 +10,8 @@ import {
     Position,
     getOppositeDirection,
 } from "./_utils/gameSnakeLogic";
+import ControlsMobile from "./_components/ControlsMobile";
+import GameArea from "./_components/GameArea";
 import GameOverScreen from "./_components/GameOverScreen";
 
 const Home: React.FC = () => {
@@ -129,76 +128,29 @@ const Home: React.FC = () => {
         };
     }, []);
 
+    const changeDirection = (newDirection: Position) => {
+        if (newDirection !== getOppositeDirection(direction)) {
+            setDirection(newDirection);
+        }
+    };
+
     return (
         <div className="flex anim-opacity flex-col relative items-center py-10 justify-center overflow-hidden">
             <GameOverScreen score={score} running={running} />
-            <div
-                className="relative"
-                style={{
-                    width: "80vw",
-                    height: "80vw",
-                    maxWidth: "800px",
-                    maxHeight: "800px",
-                }}
-            >
-                <Board
-                    snake={snake}
-                    food={food}
-                    specialFood={specialFood}
-                    boardSize={boardSize}
-                />
-                <Score score={score} />
-                {!running && (
-                    <div className="absolute inset-0 flex flex-col justify-center items-center bg-black bg-opacity-50 text-white text-2xl">
-                        {gameOver ? (
-                            <>
-                                <div>Game Over</div>
-                                <p className="text-base">Punkty: {score}</p>
-                                <button
-                                    onClick={handleStart}
-                                    className="mt-8 text-sm py-2 px-4 bg-gradient-to-tr from-green-500 to-green-800 shadow-xl border-green-600 border shadow-green-500/50 rounded font-medium flex items-center justify-center space-x-1"
-                                >
-                                    <FaArrowRotateLeft />
-                                    <span>Jeszcze raz</span>
-                                </button>
-                            </>
-                        ) : (
-                            <button
-                                onClick={handleStart}
-                                className="text-sm py-2 px-4 bg-gradient-to-tr from-green-500 to-green-800 shadow-xl border-green-600 border shadow-green-500/50 rounded font-medium"
-                            >
-                                Rozpocznij Gre
-                            </button>
-                        )}
-                    </div>
-                )}
-            </div>
-            <div className="flex items-center justify-center mt-12 relative lg:hidden p-10 w-40 h-40 mx-auto">
-                <button
-                    className="p-3 border rounded-xl absolute left-0 top-1/2 -translate-y-1/2 -translate-x-full"
-                    onClick={() => setDirection(DIRECTIONS.LEFT)}
-                >
-                    Left
-                </button>
-                <button
-                   className="p-3 border rounded-xl absolute left-0 top-1/2 -translate-y-full -translate-x-1/2"
-                    onClick={() => setDirection(DIRECTIONS.UP)}
-                >
-                    Up
-                </button>
-                <button
-                   className="p-3 border rounded-xl absolute left-0 top-1/2 translate-y-full -translate-x-1/2"
-                    onClick={() => setDirection(DIRECTIONS.DOWN)}
-                >
-                    Down
-                </button>
-                <button
-                   className="p-3 border rounded-xl absolute left-0 top-1/2 -translate-y-1/2 translate-x-full"
-                    onClick={() => setDirection(DIRECTIONS.RIGHT)}
-                >
-                    Right
-                </button>
-            </div>
+            <GameArea
+                snake={snake}
+                food={food}
+                specialFood={specialFood}
+                boardSize={boardSize}
+                score={score}
+                gameOver={gameOver}
+                running={running}
+                handleStart={handleStart}
+            />
+            <ControlsMobile
+                changeDirection={changeDirection}
+                direction={direction}
+            />
         </div>
     );
 };

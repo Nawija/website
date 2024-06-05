@@ -42,7 +42,7 @@ export default function RootLayout({
                     showAtBottom={false}
                 />
                 <Nav />
-                <main className="w-full min-h-screen overflow-x-hidden">
+                <main className="w-full min-h-screen overflow-x-hidden pb-24">
                     {children}
                 </main>
                 <Footer />
