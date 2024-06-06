@@ -1,11 +1,31 @@
 "use client";
 
 import React, { useRef } from "react";
-import SignatureTemplate1 from "./SignatureTemplate1";
-import SignatureTemplate2 from "./SignatureTemplate2";
+import SignatureTemplate1 from "./temp/SignatureTemplate1";
+import SignatureTemplate2 from "./temp/SignatureTemplate2";
+import SignatureTemplate3 from "./temp/SignatureTemplate3";
+import SignatureTemplate4 from "./temp/SignatureTemplate4";
+import SignatureTemplate5 from "./temp/SignatureTemplate5";
+import SignatureTemplate6 from "./temp/SignatureTemplate6";
+import SignatureTemplate7 from "./temp/SignatureTemplate7";
+import SignatureTemplate8 from "./temp/SignatureTemplate8";
+import { toPng } from "html-to-image";
+import {
+    DownloadHtmlButton,
+    CopyHtmlButton,
+    DownloadImageButton,
+} from "./Buttons";
 
 interface SignaturePreviewProps {
-    template: "template1" | "template2";
+    template:
+        | "template1"
+        | "template2"
+        | "template3"
+        | "template4"
+        | "template5"
+        | "template6"
+        | "template7"
+        | "template8";
     formData: {
         firstName: string;
         lastName: string;
@@ -20,10 +40,18 @@ const SignaturePreview: React.FC<SignaturePreviewProps> = ({
 }) => {
     const previewRef = useRef<HTMLDivElement>(null);
 
-    const handleDownloadHtml = () => {
-        if (previewRef.current) {
-            const htmlContent = previewRef.current.innerHTML;
-            const fullHtml = `
+    const templateMap: { [key: string]: React.FC<any> } = {
+        template1: SignatureTemplate1,
+        template2: SignatureTemplate2,
+        template3: SignatureTemplate3,
+        template4: SignatureTemplate4,
+        template5: SignatureTemplate5,
+        template6: SignatureTemplate6,
+        template7: SignatureTemplate7,
+        template8: SignatureTemplate8,
+    };
+
+    const generateFullHtml = (htmlContent: string) => `
         <!DOCTYPE html>
         <html lang="pl">
           <head>
@@ -41,8 +69,7 @@ const SignaturePreview: React.FC<SignaturePreviewProps> = ({
             body {
                 line-height: 1.5;
                 font-family: Arial, sans-serif;
-                font-size: 14px;
-                color: #333;
+                font-size: 15px;
             }
             </style>
           </head>
@@ -50,7 +77,12 @@ const SignaturePreview: React.FC<SignaturePreviewProps> = ({
             ${htmlContent}
           </body>
         </html>
-      `;
+    `;
+
+    const handleDownloadHtml = () => {
+        if (previewRef.current) {
+            const htmlContent = previewRef.current.innerHTML;
+            const fullHtml = generateFullHtml(htmlContent);
             const blob = new Blob([fullHtml], { type: "text/html" });
             const url = URL.createObjectURL(blob);
             const a = document.createElement("a");
@@ -64,20 +96,7 @@ const SignaturePreview: React.FC<SignaturePreviewProps> = ({
     const handleCopyHtml = () => {
         if (previewRef.current) {
             const htmlContent = previewRef.current.innerHTML;
-            const fullHtml = `
-        <!DOCTYPE html>
-        <html lang="en">
-          <head>
-            <meta charset="UTF-8">
-            <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            <title>Signature</title>
-            <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-          </head>
-          <body class="p-4">
-            ${htmlContent}
-          </body>
-        </html>
-      `;
+            const fullHtml = generateFullHtml(htmlContent);
             navigator.clipboard.writeText(fullHtml).then(
                 () => {
                     alert("HTML copied to clipboard!");
@@ -89,30 +108,40 @@ const SignaturePreview: React.FC<SignaturePreviewProps> = ({
         }
     };
 
+    const handleDownloadImage = () => {
+        if (previewRef.current) {
+            toPng(previewRef.current)
+                .then((dataUrl) => {
+                    const a = document.createElement("a");
+                    a.href = dataUrl;
+                    a.download = "signature.png";
+                    a.click();
+                })
+                .catch((error) => {
+                    console.error("Error generating image:", error);
+                });
+        }
+    };
+
+    const SelectedTemplate = templateMap[template];
+
     return (
         <>
             {formData.firstName && (
-                <div className="mt-4">
+                <div style={{ marginTop: "1rem" }}>
                     <div ref={previewRef}>
-                        {template === "template1" ? (
-                            <SignatureTemplate1 {...formData} />
-                        ) : (
-                            <SignatureTemplate2 {...formData} />
-                        )}
+                        <SelectedTemplate {...formData} />
                     </div>
-                    <div className="mt-4 flex space-x-2">
-                        <button
-                            onClick={handleDownloadHtml}
-                            className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
-                        >
-                            Download as HTML
-                        </button>
-                        <button
-                            onClick={handleCopyHtml}
-                            className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500"
-                        >
-                            Copy HTML
-                        </button>
+                    <div
+                        style={{
+                            marginTop: "1rem",
+                            display: "flex",
+                            gap: "0.5rem",
+                        }}
+                    >
+                        <DownloadHtmlButton onClick={handleDownloadHtml} />
+                        <CopyHtmlButton onClick={handleCopyHtml} />
+                        <DownloadImageButton onClick={handleDownloadImage} />
                     </div>
                 </div>
             )}
