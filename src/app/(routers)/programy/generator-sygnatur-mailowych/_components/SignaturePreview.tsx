@@ -25,12 +25,26 @@ const SignaturePreview: React.FC<SignaturePreviewProps> = ({
             const htmlContent = previewRef.current.innerHTML;
             const fullHtml = `
         <!DOCTYPE html>
-        <html lang="en">
+        <html lang="pl">
           <head>
             <meta charset="UTF-8">
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            <title>Signature</title>
-            <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+            <style>
+            body, table, td, div, p, a {
+                margin: 0;
+                padding: 0;
+                border: 0;
+                font-size: 100%;
+                font: inherit;
+                vertical-align: baseline;
+            }
+            body {
+                line-height: 1.5;
+                font-family: Arial, sans-serif;
+                font-size: 14px;
+                color: #333;
+            }
+            </style>
           </head>
           <body class="p-4">
             ${htmlContent}
