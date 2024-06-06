@@ -32,7 +32,7 @@ export default function Page() {
                 desc="Lorem ipsum dolor sit amet consectetur adipisicing elit."
             />
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 pb-12 wrapper">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 pb-12 wrapper">
                 {APPS.map((app, index) => {
                     return (
                         <DynamicAppCard

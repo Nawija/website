@@ -66,4 +66,10 @@ export const APPS = [
         desc: "stworz swoje cv",
         imgUrl: "https://cdn.pixabay.com/photo/2021/09/15/15/49/resume-6627200_1280.jpg",
     },
+    {
+        href: "generator-sygnatur-mailowych",
+        title: "Generator Sygnatur Mailowych",
+        desc: "stworz swoją sygnature mailowa",
+        imgUrl: "https://cdn.pixabay.com/photo/2018/03/22/02/37/email-3249062_1280.png",
+    },
 ];

@@ -52,6 +52,7 @@ const MemeForm: React.FC<MemeFormProps> = ({ onGenerate }) => {
                     accept="image/*"
                     onChange={(e) => setImage(e.target.files?.[0] || null)}
                     className="border p-2 w-full"
+                    required
                 />
             </div>
             <button

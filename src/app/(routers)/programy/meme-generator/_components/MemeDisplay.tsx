@@ -23,13 +23,13 @@ const MemeDisplay: React.FC<MemeDisplayProps> = ({
         topTextStyle += " text-red-500 top-2";
         bottomTextStyle += " text-red-500 bottom-2";
     } else if (style === "style3") {
-        topTextStyle += " bg-black/40 backdrop-blur-md w-full top-0 py-1";
-        bottomTextStyle += " bg-black/40 backdrop-blur-md w-full bottom-0 py-1";
+        topTextStyle += " bg-black/40 w-full top-0 py-1";
+        bottomTextStyle += " bg-black/40 w-full bottom-0 py-1";
     } else if (style === "style4") {
         topTextStyle +=
-            " bg-black/40 backdrop-blur-md w-full tracking-wider uppercase top-0 py-1";
+            " bg-black/40 w-full tracking-wider uppercase top-0 py-1";
         bottomTextStyle +=
-            " bg-black/40 backdrop-blur-md w-full tracking-wider uppercase bottom-0 py-1";
+            " bg-black/40 w-full tracking-wider uppercase bottom-0 py-1";
     }
 
     return (

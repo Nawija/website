@@ -33,7 +33,7 @@ const Home: React.FC = () => {
         setGameOver(false);
         setRunning(true);
         setScore(0);
-        setSpeed(250);
+        setSpeed(200);
         window.scrollTo({ top: 0, behavior: "smooth" });
     };
 
@@ -85,8 +85,8 @@ const Home: React.FC = () => {
                     if (newSnake[0].x === food.x && newSnake[0].y === food.y) {
                         setFood(createFood(boardSize));
                         newSnake.push({ ...newSnake[newSnake.length - 1] });
-                        setScore((prevScore) => prevScore + 10);
-                        setSpeed((prevSpeed) => Math.max(prevSpeed - 10, 50));
+                        setScore((prevScore) => prevScore + 20);
+                        setSpeed((prevSpeed) => Math.max(prevSpeed - 6, 50));
                     }
                     if (
                         specialFood &&
@@ -96,7 +96,7 @@ const Home: React.FC = () => {
                         setSpecialFood(null);
                         newSnake.push({ ...newSnake[newSnake.length - 1] });
                         setScore((prevScore) => prevScore + 50);
-                        setSpeed((prevSpeed) => Math.max(prevSpeed - 20, 50));
+                        setSpeed((prevSpeed) => Math.max(prevSpeed - 3, 50));
                     }
                     return newSnake;
                 });

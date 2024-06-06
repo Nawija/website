@@ -47,12 +47,14 @@ export default function CVGenerator() {
 
     const handleDownload = async (cvRef: React.RefObject<HTMLDivElement>) => {
         if (cvRef.current) {
-            const canvas = await html2canvas(cvRef.current);
+            const canvas = await html2canvas(cvRef.current, {
+                scale: 3,
+                useCORS: true,
+            });
             const imgData = canvas.toDataURL("image/png");
             const pdf = new jsPDF("p", "mm", "a4");
-            const imgProps = pdf.getImageProperties(imgData);
             const pdfWidth = pdf.internal.pageSize.getWidth();
-            const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
+            const pdfHeight = (canvas.height * pdfWidth) / canvas.width;
 
             pdf.addImage(imgData, "PNG", 0, 0, pdfWidth, pdfHeight);
             pdf.save(`cv-${cvData.name}.pdf`);
@@ -95,9 +97,7 @@ export default function CVGenerator() {
                     </div>
                 </div>
             ) : (
-                <div
-                    className={`transition-all bg-background min-h-screen w-full space-y-12 px-6 text-center flex items-center justify-center flex-col`}
-                >
+                <div className="transition-all bg-background min-h-screen w-full space-y-12 px-6 text-center flex items-center justify-center flex-col">
                     <h1 className="text-4xl font-medium">Darmowy Kreator CV</h1>
                     <p>
                         Lorem ipsum dolor sit amet consectetur adipisicing elit.
@@ -110,7 +110,6 @@ export default function CVGenerator() {
                     </p>
                     <div className="px-10 py-5 border border-red-400 text-red-500 flex items-center justify-center">
                         <p className="mr-2 text-lg uppercase">Dotacja</p>
-
                         <Heart fill="red" />
                     </div>
                 </div>
