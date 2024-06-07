@@ -1,55 +1,53 @@
 "use client";
 
 import React, { useRef } from "react";
-import SignatureTemplate1 from "./temp/SignatureTemplate1";
-import SignatureTemplate2 from "./temp/SignatureTemplate2";
-import SignatureTemplate3 from "./temp/SignatureTemplate3";
-import SignatureTemplate4 from "./temp/SignatureTemplate4";
-import SignatureTemplate5 from "./temp/SignatureTemplate5";
-import SignatureTemplate6 from "./temp/SignatureTemplate6";
-import SignatureTemplate7 from "./temp/SignatureTemplate7";
-import SignatureTemplate8 from "./temp/SignatureTemplate8";
 import { toPng } from "html-to-image";
 import {
     DownloadHtmlButton,
     CopyHtmlButton,
     DownloadImageButton,
 } from "./Buttons";
+import {
+    Temp1,
+    Temp2,
+    Temp3,
+    Temp4,
+    Temp5,
+    Temp6,
+    Temp7,
+    Temp8,
+} from "./temp/index";
 
-interface SignaturePreviewProps {
-    template:
-        | "template1"
-        | "template2"
-        | "template3"
-        | "template4"
-        | "template5"
-        | "template6"
-        | "template7"
-        | "template8";
+const TEMPLATE_MAP = {
+    template1: Temp1,
+    template2: Temp2,
+    template3: Temp3,
+    template4: Temp4,
+    template5: Temp5,
+    template6: Temp6,
+    template7: Temp7,
+    template8: Temp8,
+};
+
+type TemplateKey = keyof typeof TEMPLATE_MAP;
+
+type SignaturePreviewProps = {
+    template: TemplateKey;
     formData: {
         firstName: string;
         lastName: string;
+        imgUrl: string;
         phoneNumber: string;
         email: string;
     };
-}
+};
 
-const SignaturePreview: React.FC<SignaturePreviewProps> = ({
+export default function SignaturePreview({
     template,
     formData,
-}) => {
+}: SignaturePreviewProps) {
     const previewRef = useRef<HTMLDivElement>(null);
-
-    const templateMap: { [key: string]: React.FC<any> } = {
-        template1: SignatureTemplate1,
-        template2: SignatureTemplate2,
-        template3: SignatureTemplate3,
-        template4: SignatureTemplate4,
-        template5: SignatureTemplate5,
-        template6: SignatureTemplate6,
-        template7: SignatureTemplate7,
-        template8: SignatureTemplate8,
-    };
+    const SelectedTemplate = TEMPLATE_MAP[template];
 
     const generateFullHtml = (htmlContent: string) => `
         <!DOCTYPE html>
@@ -58,7 +56,7 @@ const SignaturePreview: React.FC<SignaturePreviewProps> = ({
             <meta charset="UTF-8">
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
             <style>
-            body, table, td, div, p, a {
+            * {
                 margin: 0;
                 padding: 0;
                 border: 0;
@@ -73,7 +71,7 @@ const SignaturePreview: React.FC<SignaturePreviewProps> = ({
             }
             </style>
           </head>
-          <body class="p-4">
+          <body>
             ${htmlContent}
           </body>
         </html>
@@ -81,9 +79,10 @@ const SignaturePreview: React.FC<SignaturePreviewProps> = ({
 
     const handleDownloadHtml = () => {
         if (previewRef.current) {
-            const htmlContent = previewRef.current.innerHTML;
-            const fullHtml = generateFullHtml(htmlContent);
-            const blob = new Blob([fullHtml], { type: "text/html" });
+            const blob = new Blob(
+                [generateFullHtml(previewRef.current.innerHTML)],
+                { type: "text/html" }
+            );
             const url = URL.createObjectURL(blob);
             const a = document.createElement("a");
             a.href = url;
@@ -95,16 +94,12 @@ const SignaturePreview: React.FC<SignaturePreviewProps> = ({
 
     const handleCopyHtml = () => {
         if (previewRef.current) {
-            const htmlContent = previewRef.current.innerHTML;
-            const fullHtml = generateFullHtml(htmlContent);
-            navigator.clipboard.writeText(fullHtml).then(
-                () => {
-                    alert("HTML copied to clipboard!");
-                },
-                () => {
-                    alert("Failed to copy HTML.");
-                }
-            );
+            navigator.clipboard
+                .writeText(generateFullHtml(previewRef.current.innerHTML))
+                .then(
+                    () => alert("HTML copied to clipboard!"),
+                    () => alert("Failed to copy HTML.")
+                );
         }
     };
 
@@ -117,36 +112,24 @@ const SignaturePreview: React.FC<SignaturePreviewProps> = ({
                     a.download = "signature.png";
                     a.click();
                 })
-                .catch((error) => {
-                    console.error("Error generating image:", error);
-                });
+                .catch((error) =>
+                    console.error("Error generating image:", error)
+                );
         }
     };
 
-    const SelectedTemplate = templateMap[template];
-
     return (
-        <>
-            {formData.firstName && (
-                <div style={{ marginTop: "1rem" }}>
-                    <div ref={previewRef}>
-                        <SelectedTemplate {...formData} />
-                    </div>
-                    <div
-                        style={{
-                            marginTop: "1rem",
-                            display: "flex",
-                            gap: "0.5rem",
-                        }}
-                    >
-                        <DownloadHtmlButton onClick={handleDownloadHtml} />
-                        <CopyHtmlButton onClick={handleCopyHtml} />
-                        <DownloadImageButton onClick={handleDownloadImage} />
-                    </div>
+        formData.firstName && (
+            <div className="mt-4">
+                <div ref={previewRef}>
+                    <SelectedTemplate {...formData} />
                 </div>
-            )}
-        </>
+                <div className="flex mt-4 gap-2">
+                    <DownloadHtmlButton onClick={handleDownloadHtml} />
+                    <CopyHtmlButton onClick={handleCopyHtml} />
+                    <DownloadImageButton onClick={handleDownloadImage} />
+                </div>
+            </div>
+        )
     );
-};
-
-export default SignaturePreview;
+}

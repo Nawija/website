@@ -3,7 +3,6 @@ import React from "react";
 import PageHeader from "@/components/PageHeader";
 import { APPS } from "@/constants/Apps";
 
-// Dynamically imported AppCard component for each app
 const DynamicAppCard = dynamic(() => import("./_components/AppCards"), {
     ssr: false,
     loading: () => <SkeletonAppCard />,
