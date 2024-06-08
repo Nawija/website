@@ -33,16 +33,16 @@ type ButtonType = {
 
 export function DownloadHtmlButton({ onClick }: ButtonType) {
     return (
-        <Button onClick={onClick} label="Download HTML" color="#2563eb" />
+        <Button onClick={onClick} label="Pobierz HTML" color="#2563eb" />
     );
 }
 
 export function CopyHtmlButton({ onClick }: ButtonType) {
-    return <Button onClick={onClick} label="Copy HTML" color="#16a34a" />;
+    return <Button onClick={onClick} label="Kopiuj" color="#16a34a" />;
 }
 
 export function DownloadImageButton({ onClick }: ButtonType) {
     return (
-        <Button onClick={onClick} label="Download Image" color="#4b5563" />
+        <Button onClick={onClick} label="Pobierz Image" color="#4b5563" />
     );
 }

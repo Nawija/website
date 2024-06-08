@@ -27,15 +27,17 @@ const SignatureTemplate1: React.FC<SignatureTemplateProps> = ({
                 display: "inline-flex",
             }}
         >
-            <img
-                src={imgUrl}
-                style={{
-                    width: "250px",
-                    objectFit: "contain",
-                    marginRight: "1rem",
-                }}
-                alt={`${firstName} ${lastName}`}
-            />
+            {imgUrl && (
+                <img
+                    src={imgUrl}
+                    style={{
+                        width: "250px",
+                        objectFit: "contain",
+                        marginRight: "1rem",
+                    }}
+                    alt={`${firstName} ${lastName}`}
+                />
+            )}
             <div>
                 <p
                     style={{

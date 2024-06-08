@@ -39,11 +39,11 @@ export default function SignatureForm({
     return (
         <form
             onSubmit={handleSubmit}
-            className="space-y-4 p-4 bg-gray-100 rounded-md"
+            className="space-y-4 p-6 bg-gray-100 border shadow-xl rounded-md"
         >
             <div>
                 <label className="block text-sm font-medium text-gray-700">
-                    First Name
+                    Imię *
                 </label>
                 <input
                     type="text"
@@ -55,7 +55,7 @@ export default function SignatureForm({
             </div>
             <div>
                 <label className="block text-sm font-medium text-gray-700">
-                    Last Name
+                    Nazwisko
                 </label>
                 <input
                     type="text"
@@ -67,7 +67,7 @@ export default function SignatureForm({
             </div>
             <div>
                 <label className="block text-sm font-medium text-gray-700">
-                    Image URL
+                    Link do zdjęcia
                 </label>
                 <input
                     type="text"
@@ -80,7 +80,7 @@ export default function SignatureForm({
             </div>
             <div>
                 <label className="block text-sm font-medium text-gray-700">
-                    Phone Number
+                    Numer telefonu
                 </label>
                 <input
                     type="text"
@@ -107,7 +107,7 @@ export default function SignatureForm({
                     type="submit"
                     className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
                 >
-                    Generate Signature
+                    Wygeneruj Signatury
                 </button>
             </div>
         </form>

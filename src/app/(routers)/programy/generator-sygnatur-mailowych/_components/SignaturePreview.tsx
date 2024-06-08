@@ -126,8 +126,8 @@ export default function SignaturePreview({
                 </div>
                 <div className="flex mt-4 gap-2">
                     <DownloadHtmlButton onClick={handleDownloadHtml} />
-                    <CopyHtmlButton onClick={handleCopyHtml} />
                     <DownloadImageButton onClick={handleDownloadImage} />
+                    <CopyHtmlButton onClick={handleCopyHtml} />
                 </div>
             </div>
         )
