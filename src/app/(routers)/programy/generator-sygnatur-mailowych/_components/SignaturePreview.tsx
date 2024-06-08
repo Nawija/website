@@ -37,6 +37,7 @@ type SignaturePreviewProps = {
         firstName: string;
         lastName: string;
         imgUrl: string;
+        additionalTexts: string[];
         phoneNumber: string;
         email: string;
     };
@@ -124,7 +125,7 @@ export default function SignaturePreview({
                 <div ref={previewRef}>
                     <SelectedTemplate {...formData} />
                 </div>
-                <div className="flex mt-4 gap-2">
+                <div className="flex items-start justify-start mt-4 gap-2">
                     <DownloadHtmlButton onClick={handleDownloadHtml} />
                     <DownloadImageButton onClick={handleDownloadImage} />
                     <CopyHtmlButton onClick={handleCopyHtml} />

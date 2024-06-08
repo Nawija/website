@@ -1,3 +1,5 @@
+"use client";
+
 type ButtonProps = {
     onClick: () => void;
     label: string;
@@ -8,18 +10,9 @@ const Button: React.FC<ButtonProps> = ({ onClick, label, color }) => {
     return (
         <button
             onClick={onClick}
+            className="flex items-center justify-center text-xs py-2 px-4 text-white rounded-lg shadow-lg"
             style={{
-                display: "inline-flex",
-                justifyContent: "center",
-                padding: "0.5rem 1rem",
-                border: "none",
-                boxShadow: "0 1px 2px rgba(0, 0, 0, 0.05)",
-                fontSize: "0.875rem",
-                fontWeight: "medium",
-                borderRadius: "0.375rem",
-                color: "white",
                 backgroundColor: color,
-                cursor: "pointer",
             }}
         >
             {label}
@@ -32,9 +25,7 @@ type ButtonType = {
 };
 
 export function DownloadHtmlButton({ onClick }: ButtonType) {
-    return (
-        <Button onClick={onClick} label="Pobierz HTML" color="#2563eb" />
-    );
+    return <Button onClick={onClick} label="Pobierz HTML" color="#2563eb" />;
 }
 
 export function CopyHtmlButton({ onClick }: ButtonType) {
@@ -42,7 +33,5 @@ export function CopyHtmlButton({ onClick }: ButtonType) {
 }
 
 export function DownloadImageButton({ onClick }: ButtonType) {
-    return (
-        <Button onClick={onClick} label="Pobierz Image" color="#4b5563" />
-    );
+    return <Button onClick={onClick} label="Pobierz PNG" color="#4b5563" />;
 }

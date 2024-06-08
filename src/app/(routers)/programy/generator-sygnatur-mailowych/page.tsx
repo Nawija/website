@@ -24,26 +24,54 @@ export default function Home() {
         imgUrl: "",
         phoneNumber: "",
         email: "",
+        additionalTexts: [] as string[],
     });
 
     const handleFormSubmit = (data: typeof formData) => setFormData(data);
 
+    const handleAddText = () => {
+        setFormData((prevFormData) => ({
+            ...prevFormData,
+            additionalTexts: [...prevFormData.additionalTexts, ""],
+        }));
+    };
+
+    const handleRemoveText = (index: number) => {
+        setFormData((prevFormData) => ({
+            ...prevFormData,
+            additionalTexts: prevFormData.additionalTexts.filter((_, i) => i !== index),
+        }));
+    };
+
+    const handleChangeText = (index: number, value: string) => {
+        const newAdditionalTexts = [...formData.additionalTexts];
+        newAdditionalTexts[index] = value;
+        setFormData((prevFormData) => ({
+            ...prevFormData,
+            additionalTexts: newAdditionalTexts,
+        }));
+    };
+
     return (
-        <div className="min-h-screen p-8 bg-gray-50 anim-opacity">
+        <div className="min-h-screen p-5 bg-gray-50 anim-opacity">
             <div className="px-4">
                 <div className="mx-auto max-w-screen-lg ">
                     <h1 className="text-2xl font-bold mb-4">
                         Generator Stopek Mailowych
                     </h1>
-                    <SignatureForm onFormSubmit={handleFormSubmit} />
+                    <SignatureForm
+                        onFormSubmit={handleFormSubmit}
+                        formData={formData}
+                        setFormData={setFormData}
+                        onAddText={handleAddText}
+                        onRemoveText={handleRemoveText}
+                        onChangeText={handleChangeText}
+                    />
                 </div>
                 {formData.firstName && (
-                    <div className="mt-8 flex items-center justify-center flex-wrap gap-8">
-                        {Object.entries(TEMPLATES).map(([key, value]) => (
-                            <div key={key} className="mb-8">
-                                <h2 className="text-xl font-semibold mb-2">
-                                    {value}
-                                </h2>
+                    <div className="mt-8 flex items-start justify-center flex-wrap gap-8">
+                        {Object.entries(TEMPLATES).map(([key]) => (
+                            <div key={key} className="my-8">
                                 <SignaturePreview
                                     template={key as TemplateKey}
                                     formData={formData}

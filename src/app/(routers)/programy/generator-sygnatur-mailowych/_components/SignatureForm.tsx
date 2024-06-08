@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { IoAdd,IoRemove } from "react-icons/io5";
 
 type FormData = {
     firstName: string;
@@ -8,27 +8,27 @@ type FormData = {
     imgUrl: string;
     phoneNumber: string;
     email: string;
+    additionalTexts: string[];
 };
 
 export default function SignatureForm({
     onFormSubmit,
+    formData,
+    setFormData,
+    onAddText,
+    onRemoveText,
+    onChangeText,
 }: {
     onFormSubmit: (data: FormData) => void;
+    formData: FormData;
+    setFormData: (data: FormData) => void;
+    onAddText: () => void;
+    onRemoveText: (index: number) => void;
+    onChangeText: (index: number, value: string) => void;
 }) {
-    const [formData, setFormData] = useState<FormData>({
-        firstName: "",
-        lastName: "",
-        imgUrl: "",
-        phoneNumber: "",
-        email: "",
-    });
-
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = e.target;
-        setFormData({
-            ...formData,
-            [name]: value,
-        });
+        setFormData({ ...formData, [name]: value });
     };
 
     const handleSubmit = (e: React.FormEvent) => {
@@ -78,6 +78,7 @@ export default function SignatureForm({
                     className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
                 />
             </div>
+
             <div>
                 <label className="block text-sm font-medium text-gray-700">
                     Numer telefonu
@@ -102,6 +103,42 @@ export default function SignatureForm({
                     className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
                 />
             </div>
+
+            <div>
+                <div className="flex items-center justify-between">
+                    <label className="block text-sm font-medium text-gray-700">
+                        Dodatkowe informacje
+                    </label>
+
+                    <button
+                        type="button"
+                        onClick={onAddText}
+                        className="mt-2 inline-flex justify-center p-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+                    >
+                        <IoAdd />
+                    </button>
+                </div>
+                {formData.additionalTexts.map((text, index) => (
+                    <div key={index} className="mt-2 flex items-center gap-2">
+                        <input
+                            type="text"
+                            value={text}
+                            onChange={(e) =>
+                                onChangeText(index, e.target.value)
+                            }
+                            className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+                        />
+                        <button
+                            type="button"
+                            onClick={() => onRemoveText(index)}
+                            className="inline-flex justify-center p-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500"
+                        >
+                            <IoRemove />
+                        </button>
+                    </div>
+                ))}
+            </div>
+
             <div>
                 <button
                     type="submit"
