@@ -1,18 +1,8 @@
 "use client";
 
-import React from "react";
+import { SignatureTemplateProps } from "../../types";
 
-interface SignatureTemplateProps {
-    firstName: string;
-    lastName: string;
-    imgUrl: string;
-    subTitle: string;
-    additionalTexts: string[];
-    phoneNumber: string;
-    email: string;
-}
-
-const SignatureTemplate1: React.FC<SignatureTemplateProps> = ({
+export default function SignatureTemplate1({
     firstName,
     lastName,
     subTitle,
@@ -20,7 +10,7 @@ const SignatureTemplate1: React.FC<SignatureTemplateProps> = ({
     additionalTexts,
     phoneNumber,
     email,
-}) => {
+}: SignatureTemplateProps) {
     return (
         <div
             style={{
@@ -121,6 +111,4 @@ const SignatureTemplate1: React.FC<SignatureTemplateProps> = ({
             </div>
         </div>
     );
-};
-
-export default SignatureTemplate1;
+}
