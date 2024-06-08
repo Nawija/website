@@ -21,6 +21,7 @@ export default function Home() {
     const [formData, setFormData] = useState({
         firstName: "",
         lastName: "",
+        subTitle: "",
         imgUrl: "",
         phoneNumber: "",
         email: "",
@@ -55,7 +56,7 @@ export default function Home() {
     return (
         <div className="min-h-screen p-5 bg-gray-50 anim-opacity">
             <div className="px-4">
-                <div className="mx-auto max-w-screen-lg ">
+                <div className="mx-auto max-w-screen-md ">
                     <h1 className="text-2xl font-bold mb-4">
                         Generator Stopek Mailowych
                     </h1>

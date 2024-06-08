@@ -36,6 +36,7 @@ type SignaturePreviewProps = {
     formData: {
         firstName: string;
         lastName: string;
+        subTitle: string;
         imgUrl: string;
         additionalTexts: string[];
         phoneNumber: string;
